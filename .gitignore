@@ -1,0 +1,8 @@
+node_modules
+.DS_Store
+.idea
+.project
+.svn
+.bem/tmp
+desktop.bundles/*/*.*
+!desktop.bundles/*/*.bemjson.js
