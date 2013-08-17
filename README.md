@@ -4,3 +4,5 @@
     cd bem-vcard-enb
     make install
     make
+
+Refactored. Retina support.
