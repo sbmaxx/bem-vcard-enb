@@ -1,0 +1,51 @@
+block card, elem extra {
+
+    content: {
+
+        var data = this.ctx.data,
+            fields = ['email', 'github', 'skype'],
+            content = [];
+
+        fields.forEach(function(field) {
+            data[field] && content.push({
+                elem: field,
+                content: data[field]
+            })
+        });
+
+        return content;
+
+    }
+
+}
+
+block card {
+
+    elem email {
+        content: {
+            block: 'b-link',
+            url: 'mailto:' + this.ctx.content,
+            content: this.ctx.content
+        }
+    }
+
+    elem github {
+        content: {
+            block: 'b-link',
+            url: 'http://github.com/' + this.ctx.content,
+            content: 'github.com/' + this.ctx.content
+        }
+    }
+
+    elem skype {
+        content: [
+            'skype: ',
+            {
+                block: 'b-link',
+                url: 'skype:' + this.ctx.content + '?chat',
+                content: this.ctx.content
+            }
+        ]
+    }
+
+}

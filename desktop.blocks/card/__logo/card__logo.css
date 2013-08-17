@@ -1,0 +1,16 @@
+.card__logo
+{
+    position: absolute;
+    left: 27px;
+    top: 128px;
+
+    width: 110px;
+    height: 44px;
+
+    border: 0;
+}
+
+.card__side_lang_en .card__logo
+{
+    top: 124px;
+}

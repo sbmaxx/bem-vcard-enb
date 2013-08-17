@@ -1,0 +1,20 @@
+block card, elem title {
+
+    content: {
+
+        var data = this.ctx.data;
+
+        return [
+            {
+                elem: 'name',
+                content: data.name
+            },
+            {
+                elem: 'position',
+                content: data.position
+            }
+        ]
+
+    }
+
+}

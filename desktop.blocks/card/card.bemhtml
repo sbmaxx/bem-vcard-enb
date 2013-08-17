@@ -1,0 +1,91 @@
+block card {
+
+    js: {
+        ru: this.ctx.cards[0].data.name + ' — ' + this.ctx.cards[0].data.extra.email,
+        en: this.ctx.cards[1].data.name + ' — ' + this.ctx.cards[1].data.extra.email
+    }
+
+    mix: [{
+        block: 'i-font',
+        mods: { face: 'textbook-new' }
+    }]
+
+    content: {
+
+        var cards = this.ctx.cards,
+            content = [],
+            langs = [];
+
+        content.push(cards.map(function(card, i) {
+
+            langs.push(card.lang);
+
+            return {
+                elem: 'side',
+                mix: [{ elem: 'layout' }],
+                mods: {
+                    lang: card.lang,
+                    state: i === 0 ? 'opened' : ''
+                },
+                content: [
+                    {
+                        elem: 'info',
+                        mix: [{ elem: 'left' }],
+                        card: card
+                    },
+                    {
+                        elem: 'top',
+                        content: {
+                            elem: 'arrow',
+                            content: {
+                                elem: 'shape'
+                            }
+                        }
+                    },
+                    {
+                        elem: 'bottom',
+                        content: {
+                            elem: 'arrow',
+                            content: {
+                                elem: 'shape'
+                            }
+                        }
+                    }
+                ]
+            }
+
+        }));
+
+        content.push({
+            elem: 'switch',
+            content: langs.map(function(lang, i) {
+                 var mods = {
+                     pseudo: 'yes'
+                 };
+
+                 if (i === 0) {
+                     mods.disabled = 'yes';
+                 }
+
+                 return {
+                     block: 'b-link',
+                     mix: [{ block: 'card', elem: 'link', elemMods: { lang: lang } }],
+                     mods: mods,
+                     js: true,
+                     content: lang
+                 }
+             })
+        });
+
+        return content;
+
+    }
+
+    elem arrow, tag: 'i'
+    elem shape, tag: 'i'
+    elem bottom, tag: 'i'
+    elem top, tag: 'i'
+
+    elem name, tag: 'h1'
+
+}

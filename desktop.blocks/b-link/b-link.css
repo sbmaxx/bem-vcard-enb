@@ -1,0 +1,10 @@
+.b-link, .b-link:visited
+{
+    color: #2879AC;
+}
+
+.b-link:hover
+{
+    color: #FF0000;
+    text-decoration: underline;
+}

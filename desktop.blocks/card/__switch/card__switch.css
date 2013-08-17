@@ -1,0 +1,20 @@
+.card__switch
+{
+    position: absolute;
+    z-index: 10;
+    top: 318px;
+    left: 10px;
+}
+
+.card__switch .b-link
+{
+    margin-right: 0.5em;
+}
+
+.card__switch .b-link,
+.card__switch .b-link__inner
+{
+    float: left;
+
+    line-height: 1;
+}

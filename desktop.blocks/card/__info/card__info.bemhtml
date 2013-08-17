@@ -1,0 +1,45 @@
+block card, elem info {
+
+    content: {
+
+        var card = this.ctx.card,
+            data = card.data;
+
+        return [
+            {
+                elem: 'rectangle',
+                content: [
+                    {
+                        elem: 'logo',
+                        lang: card.lang,
+                        site: data.contact.site
+                    },
+                    {
+                        elem: 'text',
+                        content: [
+                            {
+                                elem: 'title',
+                                data: {
+                                    name: data.name,
+                                    position: data.position
+                                }
+                            },
+                            {
+                                elem: 'contact',
+                                data: data.contact,
+                                lang: card.lang,
+                                i18n: card.i18n
+                            },
+                            {
+                                elem: 'extra',
+                                data: data.extra
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+
+    }
+
+}

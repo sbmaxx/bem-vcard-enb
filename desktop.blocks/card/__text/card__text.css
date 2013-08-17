@@ -1,0 +1,29 @@
+.card__title
+{
+    height: 98px;
+    margin-bottom: 10px;
+}
+
+.card__title, .card__contact, .card__extra
+{
+    margin-bottom: 10px;
+}
+
+
+.card__name
+{
+    font-size: 25px;
+
+    position: relative;
+    left: -0.04em;
+
+    margin: 0;
+
+    font-weight: normal;
+}
+
+.card__position
+{
+    font-size: 13px;
+    font-weight: normal;
+}

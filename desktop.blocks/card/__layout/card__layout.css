@@ -1,0 +1,100 @@
+.card__side
+{
+    position: absolute;
+
+    width: 560px;
+    height: 320px;
+
+    top: 0;
+    left: 0;
+}
+
+.card__left, .card__top, .card__bottom
+{
+    position: absolute;
+    overflow: hidden;
+}
+
+.card__left
+{
+    z-index: 2;
+
+    width: 475px;
+    height: 320px;
+}
+
+.card__rectangle
+{
+    position: relative;
+    top: 10px;
+    left: 10px;
+
+    width: 465px;
+    height: 300px;
+}
+
+.card__top, .card__bottom
+{
+    left: 475px;
+
+    width: 85px;
+    height: 161px;
+    padding: 0;
+}
+
+.card__bottom
+{
+    z-index: 1;
+    top: 100%;
+
+    margin-top: -160px;
+
+}
+
+.card__arrow
+{
+    position: absolute;
+    left: 0;
+
+    width: 0;
+    height: 0;
+}
+
+.card__arrow .card__shape
+{
+    position: absolute;
+    left: 0;
+
+    width: 75px;
+    height: 150px;
+}
+
+.card__top .card__arrow
+{
+    -webkit-transform: skew(26.3deg);
+    -moz-transform: skew(26.3deg);
+    -o-transform: skew(26.3deg);
+    -ms-transform: skew(26.3deg);
+    transform: skew(26.3deg);
+}
+
+.card__top .card__arrow,
+.card__top .card__arrow .card__shape
+{
+    bottom: 0;
+}
+
+.card__bottom .card__arrow
+{
+    -webkit-transform: skew(-26.3deg);
+    -moz-transform: skew(-26.3deg);
+    -o-transform: skew(-26.3deg);
+    -ms-transform: skew(-26.3deg);
+    transform: skew(-26.3deg);
+}
+
+.card__bottom .card__arrow,
+.card__bottom .card__arrow .card__shape
+{
+    top: 0;
+}

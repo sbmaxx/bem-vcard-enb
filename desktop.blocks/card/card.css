@@ -1,0 +1,22 @@
+.card
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 560px;
+    height: 320px;
+    margin-top: -160px;
+    margin-left: -280px;
+
+    -webkit-perspective: 1000;
+}
+
+.card__text
+{
+    position: absolute;
+    top: 30px;
+    left: 165px;
+
+    width: 300px;
+}

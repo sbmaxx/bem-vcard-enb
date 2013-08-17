@@ -1,0 +1,19 @@
+block card, elem logo {
+
+    tag: 'a'
+
+    attrs: {
+        target: '_blank',
+        href: 'http://' + this.ctx.site
+    }
+
+    content: {
+        tag: 'img',
+        attrs: {
+            width: 110,
+            height: 44,
+            src: '../../desktop.blocks/card/__logo/card__logo_lang_' + this.ctx.lang + '.svg'
+        }
+    }
+
+}

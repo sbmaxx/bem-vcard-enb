@@ -1,0 +1,32 @@
+.card__side
+{
+    z-index: 1;
+
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: rotateX(-180deg);
+
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transform: rotateX(-180deg);
+}
+
+.card__side_state_closed
+{
+    -webkit-transition: all .4s ease-in-out;
+    -webkit-transform: rotateX(180deg);
+
+    transition: all .4s ease-in-out;
+    transform: rotateX(180deg);
+}
+
+.card__side_state_opened
+{
+    z-index: 2;
+
+    -webkit-transition: all .4s ease-in-out;
+    -webkit-transform: rotateX(0);
+
+    transition: all .4s ease-in-out;
+    transform: rotateX(0);
+}
