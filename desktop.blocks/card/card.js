@@ -16,8 +16,9 @@ BEM.DOM.decl({ name: 'card' }, {
 
         this.findBlockOn(current, 'b-link').setMod('disabled', 'yes');
 
-
-        this.switchSide(lang);
+        this
+            .switchSide(lang)
+            .changeTitle(lang);
 
     },
 
@@ -39,6 +40,8 @@ BEM.DOM.decl({ name: 'card' }, {
             this.setMod(opened, 'state', 'closed');
             this.setMod(current, 'state', 'opened');
         });
+
+        return this;
 
     }
 
