@@ -1,7 +1,7 @@
 ({
     block: 'b-page',
     title: 'Роман Рождественский — sbmaxx@yandex-team.ru',
-    favicon: '//yandex.ru/favicon.ico',
+    favicon: '//yandex.st/morda-logo/i/favicon.ico',
     head: [
         { elem: 'css', url: '_index.css' },
         { elem: 'js', url: 'http://yandex.st/jquery/1.9.1/jquery.min.js' },
