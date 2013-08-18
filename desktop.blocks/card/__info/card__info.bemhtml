@@ -1,3 +1,5 @@
+block card, elem name, tag: 'h1'
+
 block card, elem info {
 
     content: {

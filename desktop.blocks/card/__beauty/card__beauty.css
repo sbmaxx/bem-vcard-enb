@@ -1,21 +1,9 @@
 .card__rectangle
 {
     background: #fff;
-
-    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
 
-.card__left, .card__bottom
+.card__left
 {
     background: #eee;
-}
-
-.card__arrow .card__shape
-{
-    background: #fff;
-    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }

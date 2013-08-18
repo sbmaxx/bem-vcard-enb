@@ -34,21 +34,9 @@ block card {
                         card: card
                     },
                     {
-                        elem: 'top',
+                        elem: 'right',
                         content: {
-                            elem: 'arrow',
-                            content: {
-                                elem: 'shape'
-                            }
-                        }
-                    },
-                    {
-                        elem: 'bottom',
-                        content: {
-                            elem: 'arrow',
-                            content: {
-                                elem: 'shape'
-                            }
+                            elem: 'inner'
                         }
                     }
                 ]
@@ -80,12 +68,5 @@ block card {
         return content;
 
     }
-
-    elem arrow, tag: 'i'
-    elem shape, tag: 'i'
-    elem bottom, tag: 'i'
-    elem top, tag: 'i'
-
-    elem name, tag: 'h1'
 
 }
