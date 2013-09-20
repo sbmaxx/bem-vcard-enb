@@ -5,4 +5,4 @@
     make install
     make
 
-Refactored. Retina support.
+Refactored. Retina support. Demo — http://rozhdestvenskiy.ru
