@@ -1,0 +1,19 @@
+.link_pseudo_yes
+{
+    color: #2879AC;
+}
+
+.i-ua_js_yes .link_pseudo_yes
+{
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+.i-ua_js_yes .link_pseudo_yes .link__inner
+{
+    text-decoration: none;
+
+    color: inherit;
+    border-bottom: 1px dotted;
+}

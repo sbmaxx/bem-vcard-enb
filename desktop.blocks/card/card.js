@@ -2,7 +2,7 @@ BEM.DOM.decl({ name: 'card' }, {
 
     onSetMod : {
         js : function() {
-            BEM.blocks['b-link'].on(this.elem('link'), 'click', this._onClick, this);
+            BEM.blocks['link'].on(this.elem('link'), 'click', this._onClick, this);
         }
     },
 
@@ -11,10 +11,10 @@ BEM.DOM.decl({ name: 'card' }, {
         var current = e.target.domElem,
             lang = this.getMod(current, 'lang');
 
-        this.findBlockOn('link', { block: 'b-link',  modName: 'disabled', modVal: 'yes' })
+        this.findBlockOn('link', { block: 'link',  modName: 'disabled', modVal: 'yes' })
             .delMod('disabled');
 
-        this.findBlockOn(current, 'b-link').setMod('disabled', 'yes');
+        this.findBlockOn(current, 'link').setMod('disabled', 'yes');
 
         this
             .switchSide(lang)

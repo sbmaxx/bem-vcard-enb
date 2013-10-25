@@ -1,4 +1,4 @@
-BEM.DOM.decl({'name': 'b-link', 'modName': 'pseudo', 'modVal': 'yes'}, {
+BEM.DOM.decl({'name': 'link', 'modName': 'pseudo', 'modVal': 'yes'}, {
 
     _onClick : function(e) {
 

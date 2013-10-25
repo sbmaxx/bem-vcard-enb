@@ -56,7 +56,7 @@ block card {
                  }
 
                  return {
-                     block: 'b-link',
+                     block: 'link',
                      mix: [{ block: 'card', elem: 'link', elemMods: { lang: lang } }],
                      mods: mods,
                      js: true,

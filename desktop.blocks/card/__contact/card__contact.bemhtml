@@ -54,7 +54,7 @@ block card, elem contact {
 
 block card, elem site {
     content: {
-        block: 'b-link',
+        block: 'link',
         url: 'http://' + this.ctx.content,
         content: this.ctx.content
     }

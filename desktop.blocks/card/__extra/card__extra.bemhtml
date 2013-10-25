@@ -23,7 +23,7 @@ block card {
 
     elem email {
         content: {
-            block: 'b-link',
+            block: 'link',
             url: 'mailto:' + this.ctx.content,
             content: this.ctx.content
         }
@@ -31,7 +31,7 @@ block card {
 
     elem github {
         content: {
-            block: 'b-link',
+            block: 'link',
             url: 'http://github.com/' + this.ctx.content,
             content: 'github.com/' + this.ctx.content
         }
@@ -41,7 +41,7 @@ block card {
         content: [
             'skype: ',
             {
-                block: 'b-link',
+                block: 'link',
                 url: 'skype:' + this.ctx.content + '?chat',
                 content: this.ctx.content
             }

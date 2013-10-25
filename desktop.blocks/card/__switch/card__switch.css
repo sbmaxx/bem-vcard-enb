@@ -6,13 +6,13 @@
     left: 10px;
 }
 
-.card__switch .b-link
+.card__switch .link
 {
     margin-right: 0.5em;
 }
 
-.card__switch .b-link,
-.card__switch .b-link__inner
+.card__switch .link,
+.card__switch .link__inner
 {
     float: left;
 
