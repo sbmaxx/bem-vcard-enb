@@ -33,12 +33,8 @@ block card {
                         mix: [{ elem: 'left' }],
                         card: card
                     },
-                    {
-                        elem: 'right',
-                        content: {
-                            elem: 'inner'
-                        }
-                    }
+                    { elem: 'top', tag: 'i', content: { elem: 'arrow', content: { elem: 'shape' } } },
+                    { elem: 'bottom', tag: 'i', content: { elem: 'arrow', content: { elem: 'shape' } } }
                 ]
             }
 
@@ -68,5 +64,9 @@ block card {
         return content;
 
     }
+
+    elem arrow, tag: 'i'
+
+    elem shape, tag: 'i'
 
 }
