@@ -27,7 +27,7 @@
                 },
                 data: {
                     name: 'Роман Рождественский',
-                    position: 'Руководитель группы разработки интерфейсов мультимедийных поисков',
+                    position: 'Руководитель службы разработки интерфейсов мультимедийных поисков',
                     contact: {
                         country: 'Россия',
                         locality: 'Москва',
@@ -55,7 +55,7 @@
                 },
                 data: {
                     name: 'Roman Rozhdestvenskiy',
-                    position: 'Team leader at group of multimedia search interfaces',
+                    position: 'Head of multimedia search interfaces',
                     contact: {
                         country: 'Russia',
                         locality: 'Moscow',
