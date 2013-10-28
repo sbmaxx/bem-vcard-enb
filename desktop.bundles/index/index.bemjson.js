@@ -5,7 +5,14 @@
     head: [
         { elem: 'css', url: '_index.css' },
         { elem: 'js', url: 'http://yandex.st/jquery/1.9.1/jquery.min.js' },
-        { elem: 'js', url: '_index.js' }
+        { elem: 'js', url: '_index.js' },
+        {
+            elem: 'meta',
+            attrs: {
+                name: 'viewport',
+                content: 'width=600, initial-scale=1.0'
+            }
+        }
     ],
     content: {
         block: 'card',
