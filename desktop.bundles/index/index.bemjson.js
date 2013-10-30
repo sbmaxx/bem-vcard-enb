@@ -55,7 +55,7 @@
                 },
                 data: {
                     name: 'Roman Rozhdestvenskiy',
-                    position: 'Head of multimedia search interfaces',
+                    position: 'Head of multimedia search interfaces department',
                     contact: {
                         country: 'Russia',
                         locality: 'Moscow',
