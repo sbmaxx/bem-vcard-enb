@@ -50,7 +50,7 @@
                 i18n: {
                     tel: 'tel. ',
                     fax: 'fax ',
-                    cellular: 'cel. ',
+                    cellular: 'cell. ',
                     phoneAdd: ' ext. '
                 },
                 data: {
