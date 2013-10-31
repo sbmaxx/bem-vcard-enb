@@ -10,7 +10,7 @@
             elem: 'meta',
             attrs: {
                 name: 'viewport',
-                content: 'width=600, initial-scale=1.0'
+                content: 'width=device-width, initial-scale=0.5'
             }
         }
     ],
