@@ -1,49 +1,76 @@
-module.exports = function(config) {
-    config.node('desktop.bundles/index');
+module.exports = function (config) {
+    config.mode("development", function () {
+        config.node("pages/index", function (nodeConfig) {
+            nodeConfig.addTechs([
+                [require("enb/techs/file-copy"), {
+                    sourceTarget: "?.js",
+                    destTarget: "_?.js"
+                }],
+                [require("enb/techs/file-copy"), {
+                    sourceTarget: "?.css",
+                    destTarget: "_?.css"
+                }]
+            ]);
+        });
+    });
+    config.mode("production", function () {
+        config.node("pages/index", function (nodeConfig) {
+            nodeConfig.addTechs([
+                [require("enb/techs/borschik"), {
+                    sourceTarget: "?.js",
+                    destTarget: "_?.js",
+                    minify: true,
+                    freeze: false
+                }],
+                [require("enb/techs/borschik"), {
+                    sourceTarget: "?.css",
+                    destTarget: "_?.css",
+                    minify: true,
+                    freeze: false
+                }]
+            ]);
+        });
+    });
 
-    config.nodeMask(/desktop\.bundles\/.*/, function(nodeConfig) {
+    config.node("pages/index", function (nodeConfig) {
         nodeConfig.addTechs([
-            new (require('enb/techs/file-provider'))({ target: '?.bemjson.js' }),
-            new (require('enb/techs/bemdecl-from-bemjson'))(),
-            new (require('enb/techs/levels'))({ levels: getLevels(config) }),
-            new (require('enb/techs/deps-old'))(),
-            new (require('enb/techs/files'))(),
-            new (require('enb/techs/js'))(),
-            new (require('enb/techs/css'))(),
-            new (require('enb-bemhtml/techs/bemhtml'))(),
-            new (require('enb/techs/html-from-bemjson'))()
+            [require("enb/techs/levels"), {
+                levels: getLevels()
+            }],
+            [require("enb/techs/file-provider"), {
+                target: "?.bemjson.js"
+            }],
+            require("enb/techs/bemdecl-from-bemjson"),
+            require("enb/techs/deps-old"),
+            require("enb/techs/files"),
+            [ require('enb-bh/techs/bh-server-include'), {
+                jsAttrName: 'data-bem',
+                jsAttrScheme: 'json'
+            }],
+            require('enb-bh/techs/html-from-bemjson'),
+            [ require('enb-diverse-js/techs/browser-js'), {
+                target: '?.pre.js'
+            }],
+            [ require('enb-modules/techs/prepend-modules'), {
+                source: '?.pre.js'
+            }],
+            require("enb-stylus/techs/css-stylus-with-autoprefixer")
         ]);
-        nodeConfig.addTargets([
-            '?.html', '_?.js', '_?.css'
-        ]);
-    });
+        nodeConfig.addTargets(["?.html", "_?.js", "_?.css"]);
 
-    config.mode('development', function() {
-        config.nodeMask(/desktop\.bundles\/.*/, function(nodeConfig) {
-            nodeConfig.addTechs([
-                new (require('enb/techs/file-copy'))({ sourceTarget: '?.js', destTarget: '_?.js' }),
-                new (require('enb/techs/file-copy'))({ sourceTarget: '?.css', destTarget: '_?.css' })
-            ]);
-        });
-    });
-    config.mode('production', function() {
-        config.nodeMask(/desktop\.bundles\/.*/, function(nodeConfig) {
-            nodeConfig.addTechs([
-                new (require('enb/techs/borschik'))({ sourceTarget: '?.js', destTarget: '_?.js' }),
-                new (require('enb/techs/borschik'))({ sourceTarget: '?.css', destTarget: '_?.css' })
-            ]);
-        });
-    });
-};
-
-function getLevels(config) {
-    return [
-        'bem-bl/blocks-common',
-        'bem-bl/blocks-desktop',
-        'bemhtml/common.blocks',
-        'common.blocks',
-        'desktop.blocks'
-    ].map(function(level) {
-        return config.resolvePath(level);
+        function getLevels() {
+            return [{
+                "path": "bower_components/bem-core/common.blocks",
+                "check": false
+            }, {
+                "path": "bower_components/bem-core/desktop.blocks",
+                "check": false
+            }, {
+                "path": "blocks",
+                "check": true
+            }].map(function (l) {
+                return config.resolvePath(l);
+            });
+        }
     });
 }

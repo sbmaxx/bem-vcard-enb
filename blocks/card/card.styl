@@ -1,0 +1,143 @@
+width = 560px
+height = 300px
+
+.card
+{
+    width: width
+    height: height
+
+    position: absolute;
+
+    margin: auto;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+
+    -webkit-perspective: 1000;
+
+    &__text {
+        position: absolute;
+        top: 30px
+        left: 165px
+        width: 300px
+    }
+
+    &__side {
+        width: width
+        height: height
+        position: absolute;
+
+        top: 0;
+        left: 0;
+
+        user-select: none;
+    }
+
+    &__rectangle {
+        position: absolute;
+        z-index: 2;
+
+        width: 465px;
+        height: 300px;
+    }
+
+    &__triangle {
+        position: absolute;
+        left: 100%;
+        margin-left: -95px;
+        border-color: rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) #fff;
+        border-style: solid;
+        border-width: 150px 0 150px 92px;
+        width: 0;
+        height: 0;
+        -webkit-transform:rotate(0deg)
+        &:after {
+            content: "";
+            position: absolute;
+            left: -93px;
+            top: -50%;
+            margin-top: -149px;
+            bottom: 0;
+            width: 2px;
+            height: 298px;
+            background: #fff;
+        }
+    }
+
+    &__info {
+        background: #fff;
+    }
+
+        &__title {
+        height: 98px;
+        margin-bottom: 10px;
+    }
+
+    &__title, &__contact, &__extra {
+        margin-bottom: 10px;
+    }
+
+    &__name {
+        font-size: 25px;
+        margin: 0;
+        font-weight: normal;
+    }
+
+    &__position {
+        font-size: 13px;
+        font-weight: normal;
+    }
+
+    &__side {
+        z-index: 1;
+
+        -webkit-transform-style: preserve-3d;
+        -webkit-backface-visibility: hidden;
+        -webkit-transform: rotateX(-180deg);
+
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
+        transform: rotateX(-180deg);
+    }
+
+    &__side_state_closed {
+        -webkit-transition: all .4s ease-in-out;
+        -webkit-transform: rotateX(180deg);
+
+        transition: all .4s ease-in-out;
+        transform: rotateX(180deg);
+    }
+
+    &__side_state_opened {
+        z-index: 2;
+
+        -webkit-transition: all .4s ease-in-out;
+        -webkit-transform: rotateX(0);
+
+        transition: all .4s ease-in-out;
+        transform: rotateX(0);
+    }
+
+    &__switch {
+        position: absolute;
+        z-index: 10;
+        top: 318px;
+        left: 10px;
+        user-select: no;
+    }
+
+    &__switch .link {
+        margin-right: 0.5em;
+    }
+
+    &__switch .link {
+        float: left;
+
+        line-height: 1;
+    }
+
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) {
+}

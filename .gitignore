@@ -4,5 +4,6 @@ node_modules
 .project
 .svn
 .bem/tmp
-desktop.bundles/*/*.*
-!desktop.bundles/*/*.bemjson.js
+pages/*/*.*
+!pages/*/*.bemjson.js
+bower_components/*

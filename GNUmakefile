@@ -16,7 +16,7 @@ all:: $(ENB) server
 
 .PHONY: server
 server:: $(ENB)
-	echo "Open http://127.0.0.1:8080/desktop.bundles/index/index.html to see build results."
+	echo "Open http://localhost:8080/pages/index/index.html to see build results."
 	@$(ENB) server
 
 $(ENB):: $(NODE_MODULES)
@@ -27,8 +27,7 @@ $(NODE_MODULES)::
 
 install:
 	npm install
-	git submodule init
-	git submodule update
+	bower install
 
 .PHONY: clean
 clean::

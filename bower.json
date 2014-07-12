@@ -1,0 +1,20 @@
+{
+  "name": "bem-vcard-enb",
+  "version": "0.0.1",
+  "homepage": "https://github.com/sbmaxx/bem-vcard-enb",
+  "authors": [
+    "Roman Rozhdestvenskiy <sbmaxx@gmail.com>"
+  ],
+  "description": "vcard on bem",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bem-core": "~2.3.0"
+  }
+}
