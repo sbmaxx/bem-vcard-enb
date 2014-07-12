@@ -1,53 +1,99 @@
-modules.define('i-bem__dom', function(provide, BEMDOM) {
-///////////
-    BEMDOM.decl({ name: 'card' }, {
+modules.define('card', ['i-bem__dom'], function(provide, BEMDOM) {
 
-        _onClick: function(e) {
+    BEMDOM.decl('card', {
 
-            var current = $(e.currentTarget),
-                lang = this.getMod(current, 'lang');
+        onSetMod: {
+            js: {
+                inited: function() {
 
-            this.findBlockOn('link', { block: 'link',  modName: 'disabled', modVal: 'yes' })
-                .delMod('disabled');
+                    this._sides = this.elem('side').map(function(i, elem) {
+                        elem = $(elem);
+                        return {
+                            lang: this.getMod(elem, 'lang'),
+                            elem: elem
+                        };
+                    }.bind(this)).toArray();
 
-            e.block.setMod('disabled', 'yes');
+                    this.bindToWin('hashchange', this._onHashChange);
 
-            this
-                .switchSide(lang)
-                .changeTitle(lang);
+                    this._onHashChange();
 
+                    this.nextTick(function() {
+                        this
+                            .setMod('animation')
+                            .setMod('visible');
+                    });
+
+                }
+            }
         },
 
-        changeTitle: function(lang) {
+        _onHashChange: function(e) {
+            var lang = this._getLangFromHash();
+            lang && this.changeLang(lang);
+        },
 
-            document.title = this.params[lang];
+        changeLang: function(lang) {
+            this._changeTitle(lang);
+            this._switchSide(lang);
+            this._changeUrl(lang);
+        },
+
+        _changeTitle: function(lang) {
+            document.title = this.params.titles[lang];
+            return this;
+        },
+
+        _changeUrl: function(lang) {
+
+            var link;
+
+            this.elem('link').each(function(i, elem) {
+                elem = $(elem);
+                link = this.findBlockOn(elem, 'link');
+                link.setMod('disabled', this.hasMod(elem, 'lang', lang));
+            }.bind(this));
+
             return this;
 
         },
 
-        switchSide: function(lang) {
+        _switchSide: function(lang) {
 
-            var current = this.elem('side', 'lang', lang),
-                opened = this.elem('side', 'state', 'opened');
+            var to,
+                from;
 
-            this.delMod(current, 'state', 'closed');
-
-            this.nextTick(function() {
-                this.setMod(opened, 'state', 'closed');
-                this.setMod(current, 'state', 'opened');
+            this._sides.forEach(function(side) {
+                if (side.lang === lang) {
+                    to = side.elem;
+                } else {
+                    from = side.elem;
+                }
             });
 
+            this.delMod(to, 'state', 'closed');
+
+            if (this.hasMod('animation')) {
+                setTimeout(function() {
+                    this.setMod(from, 'state', 'closed');
+                    this.setMod(to, 'state', 'opened');
+                }.bind(this), 100);
+            } else {
+                this.setMod(from, 'state', 'closed');
+                this.setMod(to, 'state', 'opened');
+            }
+
             return this;
 
+        },
+
+        _getLangFromHash: function() {
+            var lang = location.hash.match(/lang=(\w{2})/);
+            return lang ? lang[1] : '';
         }
 
     }, {
-        live: function() {
-            console.log('lviebindto');
-            this.liveBindTo('link', 'click', function(e) {
-                this._onClick(e);
-            });
-        }
+        live: false
     });
 
     provide(BEMDOM);

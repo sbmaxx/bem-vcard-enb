@@ -1,0 +1,6 @@
+44,46c44
+<             .define('url', function (url) {
+<                 return new stylus.nodes.Literal('url(' + _this._resolveCssUrl(url.val, url.filename) + ')');
+<             });
+---
+>             .define('url', stylus.url({ limit: false }));

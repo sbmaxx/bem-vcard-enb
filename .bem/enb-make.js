@@ -59,18 +59,27 @@ module.exports = function (config) {
         nodeConfig.addTargets(["?.html", "_?.js", "_?.css"]);
 
         function getLevels() {
-            return [{
-                "path": "bower_components/bem-core/common.blocks",
-                "check": false
-            }, {
-                "path": "bower_components/bem-core/desktop.blocks",
-                "check": false
-            }, {
+
+            var libs = ['bem-core', 'bem-components'],
+                levels = ['common.blocks', 'desktop.blocks'],
+                ret = [];
+
+            libs.forEach(function(lib) {
+                levels.forEach(function(level) {
+                    ret.push(config.resolvePath({
+                        path: 'bower_components/' + lib + '/' + level,
+                        check: 'false'
+                    }));
+                });
+            });
+
+            ret.push(config.resolvePath({
                 "path": "blocks",
                 "check": true
-            }].map(function (l) {
-                return config.resolvePath(l);
-            });
+            }));
+
+            return ret;
+
         }
     });
 }

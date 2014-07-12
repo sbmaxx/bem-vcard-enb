@@ -27,6 +27,7 @@ $(NODE_MODULES)::
 
 install:
 	npm install
+	patch node_modules/enb-stylus/techs/css-stylus.js < css-stylus.patch
 	bower install
 
 .PHONY: clean

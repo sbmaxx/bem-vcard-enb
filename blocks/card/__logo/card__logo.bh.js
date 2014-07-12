@@ -9,15 +9,6 @@ module.exports = function(bh) {
             href: 'http://' + json.site
         });
 
-        ctx.content({
-            tag: 'img',
-            attrs: {
-                width: 110,
-                height: 44,
-                src: '../../blocks/card/__logo/card__logo_lang_' + json.lang + '.svg'
-            }
-        });
-
     });
 
 }

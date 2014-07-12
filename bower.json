@@ -15,6 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "bem-core": "~2.3.0"
+    "bem-core": "~2.3.0",
+    "bem-components": "git@github.com:bem/bem-components.git#df78d39f2b411c854416f4a68e4bcc488bc3e0c5"
   }
 }

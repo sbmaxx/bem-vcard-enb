@@ -3,7 +3,6 @@
         {
             block: 'link',
             mods: {
-                pseudo: 'yes',
                 disabled: 'yes'
             }
         },
