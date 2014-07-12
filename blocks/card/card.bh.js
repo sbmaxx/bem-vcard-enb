@@ -153,7 +153,7 @@ module.exports = function(bh) {
                     json.data[prop]
                 ].join('')
             });
-        })
+        });
 
         ctx.content(content, true);
 

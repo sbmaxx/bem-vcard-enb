@@ -55,6 +55,13 @@
             }
         },
         {
+            elem: 'meta',
+            attrs: {
+                name: 'format-detection',
+                content: 'telephone=no'
+            }
+        },
+        {
             elem: 'js',
             url: '//yastatic.net/jquery/2.1.1/jquery.min.js'
         },
