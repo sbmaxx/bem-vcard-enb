@@ -21,6 +21,4 @@ make
 YENV=production ./node_modules/.bin/enb make pages/index
 ```
 
-Скорее всего, ещё нужно будет поправить пути до шрифтов в собранном CSS-файле.
-
 http://rozhdestvenskiy.ru
