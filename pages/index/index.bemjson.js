@@ -5,6 +5,13 @@
     head: [
         { elem: 'css', url: '_index.css' },
         {
+            elem: 'meta',
+            attrs: {
+                name: 'viewport',
+                content: 'width=device-width, initial-scale=1'
+            }
+        },
+        {
             elem: 'js',
             content: [
                 "(function() { \
@@ -46,13 +53,6 @@
                 }()); \
                 "
             ]
-        },
-        {
-            elem: 'meta',
-            attrs: {
-                name: 'viewport',
-                content: 'width=device-width, initial-scale=1'
-            }
         },
         {
             elem: 'meta',
