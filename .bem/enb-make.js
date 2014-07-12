@@ -16,13 +16,13 @@ module.exports = function (config) {
     config.mode("production", function () {
         config.node("pages/index", function (nodeConfig) {
             nodeConfig.addTechs([
-                [require("enb/techs/borschik"), {
+                [require("enb-borschik/techs/borschik"), {
                     sourceTarget: "?.js",
                     destTarget: "_?.js",
                     minify: true,
                     freeze: false
                 }],
-                [require("enb/techs/borschik"), {
+                [require("enb-borschik/techs/borschik"), {
                     sourceTarget: "?.css",
                     destTarget: "_?.css",
                     minify: true,

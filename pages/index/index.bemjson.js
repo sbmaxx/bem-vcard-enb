@@ -5,6 +5,49 @@
     head: [
         { elem: 'css', url: '_index.css' },
         {
+            elem: 'js',
+            content: [
+                "(function() { \
+                    var card, orientation; \
+                    card = { \
+                        width: 600, \
+                        height: 360 \
+                    }; \
+                    orientation = getOrientation(); \
+                    window.addEventListener('orientationchange', function() { \
+                        orientation = getOrientation(); \
+                        computeAndSetScale(); \
+                    }); \
+                    function getAvailWidth() { \
+                        return window.screen[ orientation === 'landscape' ? 'availHeight' : 'availWidth' ]; \
+                    } \
+                    function getAvailHeight() { \
+                        return window.screen[ orientation === 'landscape' ? 'availWidth' : 'availHeight' ]; \
+                    } \
+                    function getMetaViewport() { \
+                        return document.querySelector('meta[name=\"viewport\"]'); \
+                    } \
+                    function setInitialScale(scale) { \
+                        return getMetaViewport().setAttribute('content', 'width=device-width, initial-scale=' + scale); \
+                    } \
+                    function getOrientation() { \
+                        return Math.abs(window.orientation) === 90 ? 'landscape' : 'portrait'; \
+                    } \
+                    function computeAndSetScale() { \
+                        var width = getAvailWidth(), \
+                            height = getAvailHeight(); \
+                        if (width < height) { \
+                            setInitialScale(width/card.width); \
+                        } else { \
+                            setInitialScale(height/card.height); \
+                        } \
+                    } \
+                    computeAndSetScale(); \
+                }()); \
+                "
+            ]
+        },
+        {
             elem: 'meta',
             attrs: {
                 name: 'viewport',
