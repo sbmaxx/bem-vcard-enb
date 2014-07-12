@@ -149,9 +149,9 @@ module.exports = function(bh) {
             json.data[prop] && content.push({
                 elem: prop,
                 content: [
-                    i18n[json.lang][prop],
+                    i18n[json.lang][prop] || '',
                     json.data[prop]
-                ]
+                ].join('')
             });
         })
 
