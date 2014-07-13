@@ -9,7 +9,7 @@ var data = require('../../data.js'),
 module.exports = {
     block: 'page',
     title: title,
-    favicon: '//yastatic.net/morda-logo/i/favicon.ico',
+    favicon: '//yastatic.net/morda-logo/i/favicon_islands.ico',
     head: [
         { elem: 'css', url: '_index.css' },
         {
