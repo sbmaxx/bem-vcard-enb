@@ -74,7 +74,7 @@ module.exports = function(bh) {
                          elemMods: {lang: lang }
                      }],
                      mods: mods,
-                     url: '#!/?lang=' + lang,
+                     url: '#?l=' + lang,
                      content: lang
                  };
 

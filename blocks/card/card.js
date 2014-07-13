@@ -88,7 +88,7 @@ modules.define('card', ['i-bem__dom'], function(provide, BEMDOM) {
         },
 
         _getLangFromHash: function() {
-            var lang = location.hash.match(/lang=(\w{2})/);
+            var lang = location.hash.match(/l=(\w{2})/);
             return lang ? lang[1] : '';
         }
 
