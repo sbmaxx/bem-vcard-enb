@@ -2,6 +2,7 @@ NODE_MODULES := ./node_modules/
 
 ENB := $(NODE_MODULES).bin/enb
 NPM := npm
+BOWER := bower
 
 ifneq (,$(findstring B,$(MAKEFLAGS)))
 	ENB_FLAGS := --no-cache
@@ -19,10 +20,17 @@ server:: $(ENB)
 
 $(ENB):: install
 
+STYLUS = $(NODE_MODULES)/enb-stylus/techs/css-stylus.js
+
+.PHONY: install
 install:
 	@$(NPM) install
-	patch node_modules/enb-stylus/techs/css-stylus.js < css-stylus.patch
-	bower install
+	@if ! grep -q "limit: false" "$(STYLUS)"; then patch -s $(STYLUS) < css-stylus.patch; fi
+	@$(BOWER) install
+
+.PHONY: production development
+production development:
+	YENV=$@ $(ENB) make $(ENB_FLAGS) pages/index
 
 .PHONY: clean
 clean::
