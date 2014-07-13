@@ -43,6 +43,9 @@
                     function computeAndSetScale() { \
                         var width = getAvailWidth(), \
                             height = getAvailHeight(); \
+                        if (width > card.width && card.height < height) { \
+                            return; \
+                        } \
                         if (width < height) { \
                             setInitialScale(width/card.width); \
                         } else { \
