@@ -4,7 +4,7 @@ var fs = require('fs'),
 
 var data = require('../../data.js'),
     lang = data.order[0],
-    title = data.cards[lang].name + ' — ' + data.cards[lang].extra.email;
+    title = data.cards[lang].name;
 
 module.exports = {
     block: 'page',

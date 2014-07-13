@@ -24,7 +24,7 @@ module.exports = function(bh) {
         var titles = {};
 
         json.order.forEach(function(lang) {
-            titles[lang] =json.cards[lang].name + ' — ' + json.cards[lang].extra.email;
+            titles[lang] =json.cards[lang].name;
         });
 
         ctx.js({
