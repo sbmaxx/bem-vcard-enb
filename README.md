@@ -16,6 +16,7 @@ cd bem-vcard-enb
 make install
 make
 ```
+Данные править в `data.js` в корне проекта.
 
 ##Production
 ```bash
