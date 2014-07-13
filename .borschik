@@ -2,5 +2,8 @@
     "paths" : {
         "./": "/",
         "css/": "/"
+    },
+    "freeze_paths": {
+        "blocks/**/*.svg": ":encodeURIComponent:"
     }
 }

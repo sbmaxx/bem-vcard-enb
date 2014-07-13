@@ -25,7 +25,6 @@ STYLUS = $(NODE_MODULES)/enb-stylus/techs/css-stylus.js
 .PHONY: install
 install:
 	@$(NPM) install
-	@if ! grep -q "limit: false" "$(STYLUS)"; then patch -s $(STYLUS) < css-stylus.patch; fi
 	@$(BOWER) install
 
 .PHONY: production development

@@ -26,7 +26,7 @@ module.exports = function (config) {
                     sourceTarget: "?.css",
                     destTarget: "_?.css",
                     minify: true,
-                    freeze: false
+                    freeze: true
                 }]
             ]);
         });

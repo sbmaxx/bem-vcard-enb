@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 module.exports = {
     block: 'page',
     title: 'Роман Рождественский — sbmaxx@yandex-team.ru',
