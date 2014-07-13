@@ -9,11 +9,5 @@
             block: 'font',
             mods: { face: 'textbook-new' }
         },
-    ],
-    noDeps: [
-        {
-            block: 'i-bem',
-            elem: 'html'
-        }
     ]
 })
