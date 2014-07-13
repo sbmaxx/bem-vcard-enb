@@ -1,4 +1,4 @@
-({
+module.exports = {
     block: 'page',
     title: 'Роман Рождественский — sbmaxx@yandex-team.ru',
     favicon: '//yastatic.net/morda-logo/i/favicon.ico',
@@ -122,4 +122,4 @@
         }
     ]
 
-})
+};
