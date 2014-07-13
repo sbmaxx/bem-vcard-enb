@@ -1,8 +1,6 @@
 @font-face {
     font-family: 'TextbookNew';
-    src: url('font_face_textbook-new.eot');
-    src: url('font_face_textbook-new.eot?#iefix') format('embedded-opentype'),
-         url('font_face_textbook-new.woff') format('woff'),
+    src: url('font_face_textbook-new.woff') format('woff'),
          url('font_face_textbook-new.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
