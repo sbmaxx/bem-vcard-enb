@@ -18,7 +18,11 @@ make
 
 ##Production
 ```bash
-YENV=production ./node_modules/.bin/enb make pages/index
+make production
+scp pages/index/index.html $HOSTING:/var/www/
+scp pages/index/_index.js $HOSTING:/var/www/
+scp pages/index/_index.css $HOSTING:/var/www/
+scp -r blocks/font/ $HOSTING:/var/www/blocks/font/
 ```
 
 http://rozhdestvenskiy.ru
