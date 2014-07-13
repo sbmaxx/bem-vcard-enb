@@ -1,5 +1,5 @@
-width = 545px
-height = 300px
+width = 553px
+height = 316px
 
 .ua_js_yes .card {
     visibility: hidden;
@@ -42,25 +42,45 @@ height = 300px
         left: 0;
     }
 
-    &__rectangle {
+    rectangleWidth = 465px
+    rectangleHeight = 300px
+    shadowSize = 8px
+
+    &__rectangle-container {
         position: absolute;
         z-index: 2;
+        clip: rect(auto, auto, auto, auto);
+        width: rectangleWidth + shadowSize + 1
+        height: rectangleHeight + shadowSize * 2
+    }
 
-        width: 465px;
-        height: 300px;
+    &__rectangle {
+        position: relative
+        top: shadowSize
+        bottom: shadowSize
+        left: shadowSize
+        width: rectangleWidth;
+        height: rectangleHeight;
         background: #fff;
+        box-shadow: 0 0 shadowSize rgba(0,0,0,.3);
+    }
+
+    &__triangle-container {
+        top: shadowSize
+        margin-left: -80px;
+        position: absolute;
+        left: 100%;
     }
 
     &__triangle {
         position: absolute;
-        left: 100%;
-        margin-left: -80px;
         border-color: rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) #fff;
         border-style: solid;
         border-width: 150px 0 150px 80px;
         width: 0;
         height: 0;
         transform: rotate(0deg)
+        z-index: 3
         &:after {
             content: "";
             position: absolute;
@@ -71,6 +91,32 @@ height = 300px
             width: 2px;
             height: 298px;
             background: #fff;
+        }
+    }
+
+    &__triangle-shadow {
+        position: absolute;
+        &:before {
+            top: 0;
+            content: "";
+            position: absolute;
+            background: #fff;
+            width: 1px;
+            left: 38px
+            height: 150px;
+            transform: skew(28.3deg);
+            box-shadow: 3px 0px 3px 0 rgba(0,0,0,.3);
+        }
+        &:after {
+            top: 150px;
+            content: "";
+            position: absolute;
+            background: #fff;
+            width: 1px;
+            left: 39px
+            height: 150px;
+            transform: skew(-28.3deg);
+            box-shadow: 3px 0px 3px 0 rgba(0,0,0,.3);
         }
     }
 

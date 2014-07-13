@@ -43,11 +43,18 @@ module.exports = function(bh) {
                 },
                 content: [
                     {
-                        elem: 'rectangle',
-                        card: json.cards[lang]
+                        elem: 'rectangle-container',
+                        content: {
+                            elem: 'rectangle',
+                            card: json.cards[lang]
+                        }
                     },
                     {
-                        elem: 'triangle'
+                        elem: 'triangle-container',
+                        content: [
+                            { elem: 'triangle'},
+                            { elem: 'triangle-shadow' }
+                        ]
                     }
                 ]
             });
