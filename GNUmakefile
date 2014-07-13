@@ -31,12 +31,6 @@ install:
 production development:
 	YENV=$@ $(ENB) make $(ENB_FLAGS) pages/index
 
-development:
-	YENV=development ./node_modules/.bin/enb make pages/index
-
-production:
-	YENV=production ./node_modules/.bin/enb make pages/index
-
 .PHONY: clean
 clean::
 	$(ENB) make clean
