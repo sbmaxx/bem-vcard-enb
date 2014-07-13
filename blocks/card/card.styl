@@ -2,13 +2,11 @@ width = 553px
 height = 316px
 
 .ua_js_yes .card {
-    visibility: hidden;
     opacity: 0;
     transition: opacity 1s ease-in-out;
 }
 
 .ua_js_yes .card_visible {
-    visibility: visible;
     opacity: 1;
 }
 
@@ -171,15 +169,16 @@ height = 316px
     }
 
     &__switch .link {
+        display: inline;
         margin-left: 10px;
     }
 
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 768px) {
     .card__switch {
-        font-size: 24px;
+        font-size: 40px;
     }
     .card__switch .link {
-        margin-left: 20px;
+        margin-left: 30px;
     }
 }

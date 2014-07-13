@@ -68,7 +68,7 @@ module.exports = function (config) {
                 levels.forEach(function(level) {
                     ret.push(config.resolvePath({
                         path: 'bower_components/' + lib + '/' + level,
-                        check: 'false'
+                        check: 'true'
                     }));
                 });
             });
