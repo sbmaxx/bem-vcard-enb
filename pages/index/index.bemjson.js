@@ -6,10 +6,15 @@ var data = require('../../data.js'),
     lang = data.order[0],
     title = data.cards[lang].name;
 
+var favicons = {
+    ru: '//yastatic.net/morda-logo/i/favicon_islands.ico',
+    en: '//yastatic.net/morda-logo/i/favicon_comtr.ico'
+};
+
 module.exports = {
     block: 'page',
     title: title,
-    favicon: '//yastatic.net/morda-logo/i/favicon_islands.ico',
+    favicon: favicons[lang],
     head: [
         { elem: 'css', url: '_index.css' },
         {
@@ -42,6 +47,7 @@ module.exports = {
     content: {
         block: 'card',
         order: data.order,
-        cards: data.cards
+        cards: data.cards,
+        favicons: favicons
     }
 };

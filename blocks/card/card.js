@@ -35,12 +35,18 @@ modules.define('card', ['i-bem__dom'], function(provide, BEMDOM) {
 
         changeLang: function(lang) {
             this._changeTitle(lang);
+            this._changeFavicon(lang);
             this._switchSide(lang);
             this._changeUrl(lang);
         },
 
         _changeTitle: function(lang) {
             document.title = this.params.titles[lang];
+            return this;
+        },
+
+        _changeFavicon: function(lang) {
+            $('link[rel="shortcut icon"]').attr('href', this.params.favicons[lang]);
             return this;
         },
 

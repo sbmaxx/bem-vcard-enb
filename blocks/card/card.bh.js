@@ -28,7 +28,8 @@ module.exports = function(bh) {
         });
 
         ctx.js({
-            titles: titles
+            titles: titles,
+            favicons: json.favicons
         });
 
         var content = [];
