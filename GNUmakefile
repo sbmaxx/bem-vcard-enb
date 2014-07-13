@@ -1,5 +1,3 @@
-.DEFAULT_GOAL :=
-
 NODE_MODULES := ./node_modules/
 
 ENB := $(NODE_MODULES).bin/enb
@@ -19,14 +17,10 @@ server:: $(ENB)
 	echo "Open http://localhost:8080/pages/index/index.html to see build results."
 	@$(ENB) server
 
-$(ENB):: $(NODE_MODULES)
-
-$(NODE_MODULES)::
-	$(debug ---> Updating npm dependencies)
-	@$(NPM) install
+$(ENB):: install
 
 install:
-	npm install
+	@$(NPM) install
 	patch node_modules/enb-stylus/techs/css-stylus.js < css-stylus.patch
 	bower install
 
