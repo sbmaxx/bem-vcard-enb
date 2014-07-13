@@ -6,14 +6,16 @@ module.exports = function(bh) {
             fax: 'факс: ',
             cellular: 'моб.: ',
             phoneAdd: ', доб. ',
-            site: ''
+            site: '',
+            skype: 'skype: '
         },
         en: {
             tel: 'tel. ',
             fax: 'fax ',
             cellular: 'cell. ',
             phoneAdd: ' ext. ',
-            site: ''
+            site: '',
+            skype: 'skype: '
         }
     };
 
@@ -29,10 +31,9 @@ module.exports = function(bh) {
             titles: titles
         });
 
-        var content = [],
-            langs = json.order;
+        var content = [];
 
-        langs.forEach(function(lang, i) {
+        json.order.forEach(function(lang, i) {
             content.push({
                 elem: 'side',
                 mix: [{ elem: 'layout' }],
@@ -42,8 +43,7 @@ module.exports = function(bh) {
                 },
                 content: [
                     {
-                        elem: 'info',
-                        mix: [{ elem: 'rectangle' }],
+                        elem: 'rectangle',
                         card: json.cards[lang]
                     },
                     {
@@ -53,19 +53,24 @@ module.exports = function(bh) {
             });
         });
 
-        content.push({
+        json.order.length > 1 && content.push({
             elem: 'switch',
-            content: langs.map(function(lang, i) {
+            content: json.order.map(function(lang, i) {
 
                  var mods = i === 0 ? { disabled: true } : null;
 
                  return {
                      block: 'link',
-                     mix: [{ block: 'card', elem: 'link', elemMods: { lang: lang } }],
+                     mix: [{
+                         block: 'card',
+                         elem: 'link',
+                         elemMods: {lang: lang }
+                     }],
                      mods: mods,
                      url: '#!/?lang=' + lang,
                      content: lang
-                 }
+                 };
+
              })
         });
 
@@ -73,7 +78,7 @@ module.exports = function(bh) {
 
     });
 
-    bh.match('card__info', function(ctx, json) {
+    bh.match('card__rectangle', function(ctx, json) {
 
         ctx.content([
             {
@@ -89,7 +94,8 @@ module.exports = function(bh) {
                         data: {
                             name: json.card.name,
                             position: json.card.position
-                        }
+                        },
+                        lang: json.card.lang
                     },
                     {
                         elem: 'contact',
@@ -98,7 +104,8 @@ module.exports = function(bh) {
                     },
                     {
                         elem: 'extra',
-                        data: json.card.extra
+                        data: json.card.extra,
+                        lang: json.card.lang
                     }
                 ]
             }
@@ -169,7 +176,7 @@ module.exports = function(bh) {
 
         content.push(order.map(function(el) {
             return json.data[el];
-        }).join(', '))    ;
+        }).join(', '));
 
         content.push(
             { tag: 'br' },
@@ -189,14 +196,13 @@ module.exports = function(bh) {
     });
 
     bh.match('card__extra', function(ctx, json) {
-
         ctx.content(['email', 'github', 'skype'].map(function(prop) {
             return json.data[prop] ? ({
                 elem: prop,
+                lang: json.lang,
                 content: json.data[prop]
             }) : '';
         }));
-
     });
 
     bh.match('card__email', function(ctx) {
@@ -215,9 +221,9 @@ module.exports = function(bh) {
         }, true);
     });
 
-    bh.match('card__skype', function(ctx) {
+    bh.match('card__skype', function(ctx, json) {
         ctx.content([
-            'skype: ',
+            i18n[json.lang].skype,
             {
                 block: 'link',
                 url: 'skype:' + ctx.content() + '?chat',
