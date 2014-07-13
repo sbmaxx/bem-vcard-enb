@@ -1,5 +1,7 @@
 # bem vcard
 
+![vcard example](https://raw.githubusercontent.com/sbmaxx/bem-vcard-enb/v2/example.png)
+
 Визитная карточка по БЭМ:
 * сборка на enb;
 * bem-core v2;
