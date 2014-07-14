@@ -49,29 +49,18 @@ module.exports = function (config) {
             }],
             require('enb-bh/techs/html-from-bemjson'),
             [ require('enb-diverse-js/techs/browser-js'), {
-                target: '?.pre.js'
+                target: '?.js'
             }],
-            [ require('enb-modules/techs/prepend-modules'), {
-                source: '?.pre.js'
-            }],
+            // [ require('enb-modules/techs/prepend-modules'), {
+            //     source: '?.pre.js'
+            // }],
             require("enb-stylus/techs/css-stylus-with-autoprefixer")
         ]);
         nodeConfig.addTargets(["?.html", "_?.js", "_?.css"]);
 
         function getLevels() {
 
-            var libs = ['bem-core', 'bem-components'],
-                levels = ['common.blocks', 'desktop.blocks'],
-                ret = [];
-
-            libs.forEach(function(lib) {
-                levels.forEach(function(level) {
-                    ret.push(config.resolvePath({
-                        path: 'bower_components/' + lib + '/' + level,
-                        check: 'true'
-                    }));
-                });
-            });
+            var ret = [];
 
             ret.push(config.resolvePath({
                 "path": "blocks",

@@ -1,5 +1,4 @@
 var fs = require('fs'),
-    inlineJS = fs.readFileSync('./blocks/page/page__inline.js', { encoding: 'utf8' }),
     borschik = new (require('borschik/lib/techs/js').Tech)({ techOptions: {} });
 
 var favicons = {
@@ -7,11 +6,14 @@ var favicons = {
     en: '//yastatic.net/morda-logo/i/favicon_comtr.ico'
 };
 
-module.exports = function(data) {
+module.exports = function(data, root) {
 
-    var data = data || require('../../data.js'),
+    root = root || '';
+
+    var data = data || require(root + '../../data.js'),
         lang = data.order[0],
-        title = 'ololo: ' + data.cards[lang].name;
+        title = data.cards[lang].name,
+        inlineJS = fs.readFileSync(root + 'blocks/page/page__inline.js', { encoding: 'utf8' });
 
     return  {
         block: 'page',
@@ -36,10 +38,6 @@ module.exports = function(data) {
                     name: 'format-detection',
                     content: 'telephone=no'
                 }
-            },
-            {
-                elem: 'js',
-                url: '//yastatic.net/jquery/2.1.1/jquery.min.js'
             },
             {
                 elem: 'js',

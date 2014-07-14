@@ -1,107 +1,129 @@
-modules.define('card', ['i-bem__dom'], function(provide, BEMDOM) {
+var Card = {
 
-    BEMDOM.decl('card', {
+    init: function() {
 
-        onSetMod: {
-            js: {
-                inited: function() {
+        this.card = document.querySelector('.card');
+        this.params = JSON.parse(this.card.dataset.bem).card;
 
-                    this._sides = this.elem('side').map(function(i, elem) {
-                        elem = $(elem);
-                        return {
-                            lang: this.getMod(elem, 'lang'),
-                            elem: elem
-                        };
-                    }.bind(this)).toArray();
+        var toArray = Array.prototype.slice,
+            fillLang = function(elem) {
+                console.log('elem: ', elem);
+                console.log('elem: ', elem.dataset && elem.dataset.lang);
+                return {
+                    lang: elem.dataset.lang,
+                    elem: elem
+                };
+            };
 
-                    this.bindToWin('hashchange', this._onHashChange);
+        this.sides = toArray.call(this.card.querySelectorAll('.card__side'));
+        this.links = toArray.call(this.card.querySelectorAll('.card__switch .card__link'));
 
-                    this._onHashChange();
+        this.sides = this.sides.map(fillLang);
+        this.links = this.links.map(fillLang);
 
-                    this.nextTick(function() {
-                        this
-                            .setMod('animation')
-                            .setMod('visible');
-                    });
+        window.addEventListener('onhaschange', Card._onHashChange, false);
 
-                }
-            }
-        },
+        this._onHashChange();
 
-        _onHashChange: function(e) {
-            var lang = this._getLangFromHash();
-            lang && this.changeLang(lang);
-        },
+        setTimeout(function() {
+            addClass(Card.card, 'card_animation');
+            addClass(Card.card, 'card_visible');
+        }, 0);
 
-        changeLang: function(lang) {
-            this._changeTitle(lang);
-            this._changeFavicon(lang);
-            this._switchSide(lang);
-            this._changeUrl(lang);
-        },
+    },
+    _onHashChange: function() {
+        var lang = this._getLangFromHash();
+        lang && this.changeLang(lang);
+    },
 
-        _changeTitle: function(lang) {
-            document.title = this.params.titles[lang];
-            return this;
-        },
+    changeLang: function(lang) {
+        console.log('lang: ', lang);
+        this._changeTitle(lang);
+        this._changeFavicon(lang);
+        this._switchSide(lang);
+        this._changeUrl(lang);
+    },
 
-        _changeFavicon: function(lang) {
-            $('link[rel="shortcut icon"]').attr('href', this.params.favicons[lang]);
-            return this;
-        },
+    _changeTitle: function(lang) {
+        document.title = this.params.titles[lang];
+        return this;
+    },
 
-        _changeUrl: function(lang) {
+    _changeFavicon: function(lang) {
+        document.querySelector('link[rel="shortcut icon"]').setAttribute('href', this.params.favicons[lang]);
+        return this;
+    },
 
-            var link;
+    _changeUrl: function(lang) {
 
-            this.elem('link').each(function(i, elem) {
-                elem = $(elem);
-                link = this.findBlockOn(elem, 'link');
-                link.setMod('disabled', this.hasMod(elem, 'lang', lang));
-            }.bind(this));
+        var link;
 
-            return this;
-
-        },
-
-        _switchSide: function(lang) {
-
-            var to,
-                from;
-
-            this._sides.forEach(function(side) {
-                if (side.lang === lang) {
-                    to = side.elem;
-                } else {
-                    from = side.elem;
-                }
-            });
-
-            this.delMod(to, 'state', 'closed');
-
-            if (this.hasMod('animation')) {
-                setTimeout(function() {
-                    this.setMod(from, 'state', 'closed');
-                    this.setMod(to, 'state', 'opened');
-                }.bind(this), 100);
+        this.links.forEach(function(link) {
+            if (link.lang === lang) {
+                addClass(link.elem, 'link_disabled');
             } else {
-                this.setMod(from, 'state', 'closed');
-                this.setMod(to, 'state', 'opened');
+                removeClass(link.elem, 'link_disabled');
             }
+        });
 
-            return this;
+        return this;
 
-        },
+    },
 
-        _getLangFromHash: function() {
-            var lang = location.hash.match(/l=(\w{2})/);
-            return lang ? lang[1] : '';
+    _switchSide: function(lang) {
+
+        var to,
+            from;
+
+        this.sides.forEach(function(side) {
+            if (side.lang === lang) {
+                to = side.elem;
+            } else {
+                from = side.elem;
+            }
+        });
+
+        removeClass(to, 'side_state_closed');
+
+        if (hasClass(this.card, 'card_animation')) {
+            setTimeout(function() {
+                addClass(from, 'card_state_closed');
+                addClass(to, 'card_state_opened');
+            }, 100);
+        } else {
+            addClass(from, 'card_state_closed');
+            addClass(to, 'card_state_opened');
         }
+        return this;
 
-    }, {
-        live: false
-    });
+    },
 
-    provide(BEMDOM);
+    _getLangFromHash: function() {
+        var lang = location.hash.match(/l=(\w{2})/);
+        return lang ? lang[1] : '';
+    }
 
-});
+};
+
+function addClass(elem, className) {
+    elem.className += ' ' + className;
+}
+
+function removeClass(elem, className) {
+
+    if (!hasClass(elem, className)) {
+        return;
+    }
+
+    var classes = elem.className.split(' '),
+        idx = classess.indexOf(className);
+
+    classes.splice(idx, 1);
+
+    elem.className = classes.join(' ');
+
+}
+
+function hasClass(elem, className) {
+    return elem.className.split(' ').indexOf(className) !== -1
+}

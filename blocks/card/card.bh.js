@@ -38,6 +38,9 @@ module.exports = function(bh) {
             content.push({
                 elem: 'side',
                 mix: [{ elem: 'layout' }],
+                attrs: {
+                    'data-lang': lang
+                },
                 mods: {
                     lang: lang,
                     state: i === 0 ? 'opened' : 'closed'
@@ -68,13 +71,11 @@ module.exports = function(bh) {
                  var mods = i === 0 ? { disabled: true } : null;
 
                  return {
-                     block: 'link',
-                     mix: [{
-                         block: 'card',
-                         elem: 'link',
-                         elemMods: {lang: lang }
-                     }],
-                     mods: mods,
+                     elem: 'link',
+                     attrs: {
+                         'data-lang': lang
+                     },
+                     elemMods: mods,
                      url: '#?l=' + lang,
                      content: lang
                  };
@@ -197,7 +198,7 @@ module.exports = function(bh) {
 
     bh.match('card__site', function(ctx, json) {
         ctx.content({
-            block: 'link',
+            elem: 'link',
             url: 'http://' + ctx.content(),
             content: ctx.content()
         }, true);
@@ -215,7 +216,7 @@ module.exports = function(bh) {
 
     bh.match('card__email', function(ctx) {
         ctx.content({
-            block: 'link',
+            elem: 'link',
             url: 'mailto:' + ctx.content(),
             content: ctx.content()
         }, true);
@@ -223,7 +224,7 @@ module.exports = function(bh) {
 
     bh.match('card__github', function(ctx) {
         ctx.content({
-            block: 'link',
+            elem: 'link',
             url: 'http://github.com/' + ctx.content(),
             content: 'github.com/' + ctx.content()
         }, true);
@@ -233,11 +234,18 @@ module.exports = function(bh) {
         ctx.content([
             i18n[json.lang].skype,
             {
-                block: 'link',
+                elem: 'link',
                 url: 'skype:' + ctx.content() + '?chat',
                 content: ctx.content()
             }
         ], true);
+    });
+
+    bh.match('card__link', function(ctx, json) {
+        ctx.tag('a');
+        ctx.attrs({
+            href: json.url
+        });
     });
 
 };
