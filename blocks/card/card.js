@@ -7,8 +7,6 @@ var Card = {
 
         var toArray = Array.prototype.slice,
             fillLang = function(elem) {
-                console.log('elem: ', elem);
-                console.log('elem: ', elem.dataset && elem.dataset.lang);
                 return {
                     lang: elem.dataset.lang,
                     elem: elem
@@ -21,7 +19,7 @@ var Card = {
         this.sides = this.sides.map(fillLang);
         this.links = this.links.map(fillLang);
 
-        window.addEventListener('onhaschange', Card._onHashChange, false);
+        window.addEventListener('hashchange', this._onHashChange.bind(this), false);
 
         this._onHashChange();
 
@@ -37,7 +35,6 @@ var Card = {
     },
 
     changeLang: function(lang) {
-        console.log('lang: ', lang);
         this._changeTitle(lang);
         this._changeFavicon(lang);
         this._switchSide(lang);
@@ -60,9 +57,9 @@ var Card = {
 
         this.links.forEach(function(link) {
             if (link.lang === lang) {
-                addClass(link.elem, 'link_disabled');
+                addClass(link.elem, 'card__link_disabled');
             } else {
-                removeClass(link.elem, 'link_disabled');
+                removeClass(link.elem, 'card__link_disabled');
             }
         });
 
@@ -73,7 +70,15 @@ var Card = {
     _switchSide: function(lang) {
 
         var to,
-            from;
+            from,
+            cb;
+
+        cb = function() {
+            removeClass(from, 'card__side_state_opened');
+            addClass(from, 'card__side_state_closed');
+            removeClass(to, 'card__side_state_closed');
+            addClass(to, 'card__side_state_opened');
+        };
 
         this.sides.forEach(function(side) {
             if (side.lang === lang) {
@@ -83,17 +88,16 @@ var Card = {
             }
         });
 
-        removeClass(to, 'side_state_closed');
+        removeClass(to, 'card__side_state_closed');
 
         if (hasClass(this.card, 'card_animation')) {
-            setTimeout(function() {
-                addClass(from, 'card_state_closed');
-                addClass(to, 'card_state_opened');
-            }, 100);
+            setTimeout(cb,  100);
         } else {
-            addClass(from, 'card_state_closed');
-            addClass(to, 'card_state_opened');
+            cb();
+            // здесь нельзя просто setTimeout(cb, 100), т.к. в nextTick появится модификатор анимации
         }
+
+
         return this;
 
     },
@@ -116,7 +120,7 @@ function removeClass(elem, className) {
     }
 
     var classes = elem.className.split(' '),
-        idx = classess.indexOf(className);
+        idx = classes.indexOf(className);
 
     classes.splice(idx, 1);
 
@@ -125,5 +129,5 @@ function removeClass(elem, className) {
 }
 
 function hasClass(elem, className) {
-    return elem.className.split(' ').indexOf(className) !== -1
+    return elem.className.split(' ').indexOf(className) !== -1;
 }
