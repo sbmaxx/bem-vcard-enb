@@ -5,4 +5,4 @@ var fs = require('fs'),
 var data = require('../../data.js'),
     generator = require('../generator/generator.js');
 
-module.exports = generator(data);
+module.exports = generator(data, './');
