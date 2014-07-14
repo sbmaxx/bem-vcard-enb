@@ -110,7 +110,9 @@ var Card = {
 };
 
 function addClass(elem, className) {
-    elem.className += ' ' + className;
+    if (!hasClass(elem), className) {
+        elem.className += ' ' + className;
+    }
 }
 
 function removeClass(elem, className) {
