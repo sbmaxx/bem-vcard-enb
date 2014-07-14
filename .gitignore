@@ -5,5 +5,6 @@ node_modules
 .svn
 .bem/tmp
 pages/*/*.*
+!pages/generator/*
 !pages/*/*.bemjson.js
 bower_components/*
