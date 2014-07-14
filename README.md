@@ -4,13 +4,14 @@
 
 Визитная карточка по БЭМ:
 * сборка на enb;
-* bem-core v2;
-* bem-components v2;
 * шаблоны на bh;
 * stylus;
 * заинлайненные SVG-логотипы для поддержки Retina;
 * borschik (uglify js) для минимизации статики;
+* plain javascript*;
 * корректная поддержка различных разрешений.
+
+\* — для версии с bem-core/bem-components необходимо переключиться на ветку `v2`
 
 ##Development
 ```bash
