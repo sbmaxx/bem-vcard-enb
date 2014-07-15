@@ -7,6 +7,7 @@
 * шаблоны на bh;
 * stylus;
 * заинлайненные SVG-логотипы для поддержки Retina;
+* заинлайненная статика (JS, CSS);
 * borschik (uglify js) для минимизации статики;
 * plain javascript*;
 * корректная поддержка различных разрешений.
@@ -26,8 +27,6 @@ make
 ```bash
 make production
 scp pages/index/index.html $HOSTING:/var/www/
-scp pages/index/_index.js $HOSTING:/var/www/
-scp pages/index/_index.css $HOSTING:/var/www/
 scp -r blocks/font/ $HOSTING:/var/www/blocks/font/
 ```
 
