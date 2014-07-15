@@ -4,6 +4,7 @@
         "css/": "/"
     },
     "freeze_paths": {
-        "blocks/**/*.svg": ":encodeURIComponent:"
+        "blocks/**/*.svg": ":encodeURIComponent:",
+        "blocks/**/*.woff": ":base64:"
     }
 }

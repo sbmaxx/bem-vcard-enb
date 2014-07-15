@@ -12,9 +12,7 @@ module.exports = function(data, root) {
 
     var data = data || require(root + '../../data.js'),
         lang = data.order[0],
-        title = data.cards[lang].name,
-        inlineJS = fs.readFileSync(root + 'pages/index/_index.js', { encoding: 'utf8' }),
-        inlineCSS = fs.readFileSync(root + 'pages/index/_index.css', { encoding: 'utf8' });
+        title = data.cards[lang].name;
 
     return  {
         block: 'page',
@@ -30,11 +28,11 @@ module.exports = function(data, root) {
             },
             {
                 elem: 'js',
-                content: inlineJS
+                content: fs.readFileSync(root + 'pages/index/_index.js', { encoding: 'utf8' })
             },
             {
                 elem: 'css',
-                content: inlineCSS
+                content: fs.readFileSync(root + 'pages/index/_index.css', { encoding: 'utf8' })
             }
         ],
         content: {

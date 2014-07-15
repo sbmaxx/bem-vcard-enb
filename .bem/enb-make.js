@@ -33,6 +33,7 @@ module.exports = function (config) {
     });
 
     config.node("pages/index", function (nodeConfig) {
+
         nodeConfig.addTechs([
             [require("enb/techs/levels"), {
                 levels: getLevels()
@@ -40,23 +41,27 @@ module.exports = function (config) {
             [require("enb/techs/file-provider"), {
                 target: "?.bemjson.js"
             }],
-            require("enb/techs/bemdecl-from-bemjson"),
+            [require("enb/techs/file-provider"), {
+                target: "?.bemdecl.js"
+            }],
+            // require("enb/techs/bemdecl-from-bemjson"),
             require("enb/techs/deps-old"),
             require("enb/techs/files"),
             [ require('enb-bh/techs/bh-server-include'), {
                 jsAttrName: 'data-bem',
                 jsAttrScheme: 'json'
             }],
-            require('enb-bh/techs/html-from-bemjson'),
             [ require('enb-diverse-js/techs/browser-js'), {
                 target: '?.js'
             }],
             // [ require('enb-modules/techs/prepend-modules'), {
             //     source: '?.pre.js'
             // }],
-            require("enb-stylus/techs/css-stylus-with-autoprefixer")
+            require("enb-stylus/techs/css-stylus-with-autoprefixer"),
+            require('./techs/html-from-bemjson-with-inlining')
         ]);
-        nodeConfig.addTargets(["?.html", "_?.js", "_?.css"]);
+
+        nodeConfig.addTargets(["_?.js", "_?.css", "?.html"]);
 
         function getLevels() {
 
@@ -70,5 +75,6 @@ module.exports = function (config) {
             return ret;
 
         }
+
     });
 }

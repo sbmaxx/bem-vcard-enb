@@ -7,4 +7,5 @@ node_modules
 pages/*/*.*
 !pages/generator/*
 !pages/*/*.bemjson.js
+!pages/*/*.bemdecl.js
 bower_components/*
