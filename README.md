@@ -12,7 +12,7 @@
 * borschik (uglify js) для минимизации статики;
 * корректная поддержка различных разрешений.
 
-\* — для версии с plain javascript необходимо переключиться на ветку `lightweightJS`.
+\* — для версии с plain javascript необходимо переключиться на ветку `plainjs`.
 
 ##Development
 ```bash
