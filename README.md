@@ -12,7 +12,7 @@
 * borschik (uglify js) для минимизации статики;
 * корректная поддержка различных разрешений.
 
-\* — для версии с plain javascript необходимо переключиться на ветку `plainjs`.
+\* — для версии с plain javascript необходимо переключиться на ветку [plainjs](https://github.com/sbmaxx/bem-vcard-enb/tree/plainjs).
 
 ##Development
 ```bash
