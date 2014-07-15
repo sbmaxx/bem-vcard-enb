@@ -20,8 +20,6 @@ server:: $(ENB)
 
 $(ENB):: install
 
-STYLUS = $(NODE_MODULES)/enb-stylus/techs/css-stylus.js
-
 .PHONY: install
 install:
 	@$(NPM) install
@@ -31,9 +29,6 @@ install:
 production development:
 	YENV=$@ $(ENB) make $(ENB_FLAGS) pages/index
 	scp pages/index/index.html ya.rozhdestvenskiy.ru:/var/www/
-	scp pages/index/_index.js ya.rozhdestvenskiy.ru:/var/www/
-	scp pages/index/_index.css ya.rozhdestvenskiy.ru:/var/www/
-
 
 .PHONY: clean
 clean::
