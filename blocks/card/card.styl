@@ -79,17 +79,6 @@ height = 316px
         height: 0;
         transform: rotate(0deg)
         z-index: 3
-        &:after {
-            content: "";
-            position: absolute;
-            left: -81px;
-            top: -50%;
-            margin-top: -149px;
-            bottom: 0;
-            width: 2px;
-            height: 298px;
-            background: #fff;
-        }
     }
 
     &__triangle-shadow {
@@ -103,7 +92,7 @@ height = 316px
             left: 38px
             height: 150px;
             transform: skew(28.3deg);
-            box-shadow: 3px 0px 3px 0 rgba(0,0,0,.3);
+            box-shadow: 3px 0px 3px 1px rgba(0,0,0,0.2)
         }
         &:after {
             top: 150px;
@@ -114,7 +103,7 @@ height = 316px
             left: 39px
             height: 150px;
             transform: skew(-28.3deg);
-            box-shadow: 3px 0px 3px 0 rgba(0,0,0,.3);
+            box-shadow: 3px 1px 3px 0px rgba(0,0,0,0.35)
         }
     }
 
