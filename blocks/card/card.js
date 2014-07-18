@@ -1,11 +1,22 @@
-var Card = {
+var Card = (function() {
 
-    init: function() {
+    var toArray = Array.prototype.slice;
 
-        this.card = document.querySelector('.card');
-        this.params = JSON.parse(this.card.dataset.bem).card;
+    var modSideOpened = 'card__side_state_opened';
+    var modSideClosed = 'card__side_state_closed';
+    var modAnimation = 'card_animation';
+    var modVisible = 'card_visible';
+    var modLinkDisabled = 'card__link_disabled';
 
-        var toArray = Array.prototype.slice,
+    return {
+
+        init: function() {
+
+            var fillLang;
+
+            this.card = document.querySelector('.card');
+            this.params = JSON.parse(this.card.dataset.bem).card;
+
             fillLang = function(elem) {
                 return {
                     lang: elem.dataset.lang,
@@ -13,123 +24,126 @@ var Card = {
                 };
             };
 
-        this.sides = toArray.call(this.card.querySelectorAll('.card__side'));
-        this.links = toArray.call(this.card.querySelectorAll('.card__switch .card__link'));
+            this.sides = toArray.call(this.card.querySelectorAll('.card__side'));
+            this.links = toArray.call(this.card.querySelectorAll('.card__switch .card__link'));
 
-        this.sides = this.sides.map(fillLang);
-        this.links = this.links.map(fillLang);
+            this.sides = this.sides.map(fillLang);
+            this.links = this.links.map(fillLang);
 
-        window.addEventListener('hashchange', this._onHashChange.bind(this), false);
+            window.addEventListener('hashchange', this._onHashChange.bind(this), false);
 
-        this._onHashChange();
+            this._onHashChange();
 
-        setTimeout(function() {
-            addClass(Card.card, 'card_animation');
-            addClass(Card.card, 'card_visible');
-        }, 0);
+            setTimeout(function() {
+                addClass(Card.card, modAnimation);
+                addClass(Card.card, modVisible);
+            }, 0);
 
-    },
-    _onHashChange: function() {
-        var lang = this._getLangFromHash();
-        lang && this.changeLang(lang);
-    },
+        },
 
-    changeLang: function(lang) {
-        this._changeTitle(lang);
-        this._changeFavicon(lang);
-        this._switchSide(lang);
-        this._changeUrl(lang);
-    },
-
-    _changeTitle: function(lang) {
-        document.title = this.params.titles[lang];
-        return this;
-    },
-
-    _changeFavicon: function(lang) {
-        document.querySelector('link[rel="shortcut icon"]').setAttribute('href', this.params.favicons[lang]);
-        return this;
-    },
-
-    _changeUrl: function(lang) {
-
-        var link;
-
-        this.links.forEach(function(link) {
-            if (link.lang === lang) {
-                addClass(link.elem, 'card__link_disabled');
-            } else {
-                removeClass(link.elem, 'card__link_disabled');
+        _onHashChange: function() {
+            var lang = this._getLangFromHash();
+            if (lang) {
+                this.changeLang(lang);
             }
-        });
+        },
 
-        return this;
+        changeLang: function(lang) {
+            this
+                ._changeTitle(lang)
+                ._changeFavicon(lang)
+                ._switchSide(lang)
+                ._changeUrl(lang);
+        },
 
-    },
+        _changeTitle: function(lang) {
+            document.title = this.params.titles[lang];
+            return this;
+        },
 
-    _switchSide: function(lang) {
+        _changeFavicon: function(lang) {
+            document.querySelector('link[rel="shortcut icon"]').setAttribute('href', this.params.favicons[lang]);
+            return this;
+        },
 
-        var to,
-            from,
-            cb;
+        _changeUrl: function(lang) {
 
-        cb = function() {
-            removeClass(from, 'card__side_state_opened');
-            addClass(from, 'card__side_state_closed');
-            removeClass(to, 'card__side_state_closed');
-            addClass(to, 'card__side_state_opened');
-        };
+            this.links.forEach(function(link) {
+                if (link.lang === lang) {
+                    addClass(link.elem, modLinkDisabled);
+                } else {
+                    removeClass(link.elem, modLinkDisabled);
+                }
+            });
 
-        this.sides.forEach(function(side) {
-            if (side.lang === lang) {
-                to = side.elem;
+            return this;
+
+        },
+
+        _switchSide: function(lang) {
+
+            var to,
+                from,
+                cb
+
+            cb = function() {
+                removeClass(from, modSideOpened);
+                addClass(from, modSideClosed);
+                removeClass(to, modSideClosed);
+                addClass(to, modSideOpened);
+            };
+
+            this.sides.forEach(function(side) {
+                if (side.lang === lang) {
+                    to = side.elem;
+                } else {
+                    from = side.elem;
+                }
+            });
+
+            removeClass(to, modSideClosed);
+
+            if (hasClass(this.card, modAnimation)) {
+                setTimeout(cb,  100);
             } else {
-                from = side.elem;
+                // здесь нельзя просто setTimeout(cb, 100), т.к. в nextTick появится модификатор анимации
+                cb();
             }
-        });
 
-        removeClass(to, 'card__side_state_closed');
 
-        if (hasClass(this.card, 'card_animation')) {
-            setTimeout(cb,  100);
-        } else {
-            cb();
-            // здесь нельзя просто setTimeout(cb, 100), т.к. в nextTick появится модификатор анимации
+            return this;
+
+        },
+
+        _getLangFromHash: function() {
+            var lang = location.hash.match(/l=(\w{2})/);
+            return lang ? lang[1] : '';
+        }
+    }
+
+    function addClass(elem, className) {
+        if (!hasClass(elem, className)) {
+            elem.className += ' ' + className;
+        }
+    }
+
+    function removeClass(elem, className) {
+
+        if (!hasClass(elem, className)) {
+            return;
         }
 
+        var classes = elem.className.split(/\s/),
+            idx = classes.indexOf(className);
 
-        return this;
+        classes.splice(idx, 1);
 
-    },
+        elem.className = classes.join(' ');
 
-    _getLangFromHash: function() {
-        var lang = location.hash.match(/l=(\w{2})/);
-        return lang ? lang[1] : '';
     }
 
-};
-
-function addClass(elem, className) {
-    if (!hasClass(elem, className)) {
-        elem.className += ' ' + className;
-    }
-}
-
-function removeClass(elem, className) {
-
-    if (!hasClass(elem, className)) {
-        return;
+    function hasClass(elem, className) {
+        return elem.className.split(/\s/).indexOf(className) !== -1;
     }
 
-    var classes = elem.className.split(' '),
-        idx = classes.indexOf(className);
-
-    classes.splice(idx, 1);
-
-    elem.className = classes.join(' ');
-
-}
-
-function hasClass(elem, className) {
-    return elem.className.split(' ').indexOf(className) !== -1;
-}
+}());

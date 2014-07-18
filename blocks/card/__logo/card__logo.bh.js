@@ -5,7 +5,6 @@ module.exports = function(bh) {
         ctx.tag('a');
 
         ctx.attrs({
-            target: '_blank',
             href: 'http://' + json.site
         });
 

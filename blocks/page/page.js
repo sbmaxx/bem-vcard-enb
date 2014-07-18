@@ -1,25 +1,24 @@
 (function() {
 
-    var card, orientation;
+    var card, screen, isLandscape;
 
     card = {
         width: 600,
         height: 360
     };
 
-    orientation = getOrientation();
+    screen = window.screen;
 
-    window.addEventListener('orientationchange', function() {
-        orientation = getOrientation();
-        computeAndSetScale();
-    });
+    onOrientationChange();
+
+    window.addEventListener('orientationchange', onOrientationChange);
 
     function getAvailWidth() {
-        return window.screen[ orientation === 'landscape' ? 'availHeight' : 'availWidth' ];
+        return screen[ isLandscape ? 'availHeight' : 'availWidth' ];
     }
 
     function getAvailHeight() {
-        return window.screen[ orientation === 'landscape' ? 'availWidth' : 'availHeight' ];
+        return screen[ isLandscape ? 'availWidth' : 'availHeight' ];
     }
 
     function getMetaViewport() {
@@ -31,10 +30,11 @@
     }
 
     function getOrientation() {
-        return Math.abs(window.orientation) === 90 ? 'landscape' : 'portrait';
+        return Math.abs(window.orientation) === 90;
     }
 
     function computeAndSetScale() {
+
         var width = getAvailWidth(),
             height = getAvailHeight();
 
@@ -47,9 +47,13 @@
         } else {
             setInitialScale(height/card.height);
         }
+
     }
 
-    computeAndSetScale();
+    function onOrientationChange() {
+        isLandscape = getOrientation();
+        computeAndSetScale();
+    }
 
 }());
 
