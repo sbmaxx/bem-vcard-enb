@@ -28,7 +28,7 @@ install:
 .PHONY: production development
 production development:
 	YENV=$@ $(ENB) make $(ENB_FLAGS) pages/index
-	scp -P $(SSH_PORT) pages/index/index.html rozhdestvenskiy.ru:/var/www/vhosts/rozhdestvenskiy.ru/public/
+	scp -P pages/index/index.html rozhdestvenskiy.ru:/var/www/vhosts/rozhdestvenskiy.ru/public/
 
 .PHONY: clean
 clean::
