@@ -28,7 +28,17 @@ install:
 .PHONY: production development
 production development:
 	YENV=$@ $(ENB) make $(ENB_FLAGS) pages/index
-	scp -P pages/index/index.html rozhdestvenskiy.ru:/var/www/vhosts/rozhdestvenskiy.ru/public/
+
+# Deploy
+REMOTE_COPY = scp
+REMOTE_DOMAIN = rozhdestvenskiy.ru
+REMOTE_PATH = /var/www/vhosts/rozhdestvenskiy.ru/public/
+
+.PHONY: deploy
+deploy:
+	$(REMOTE_COPY) pages/index/index.html $(REMOTE_DOMAIN):$(REMOTE_PATH)
+	ssh $(REMOTE_DOMAIN) "mkdir -p $(REMOTE_PATH)blocks/fonts"
+	$(REMOTE_COPY) -r blocks/font $(REMOTE_DOMAIN):$(REMOTE_PATH)blocks/fonts
 
 .PHONY: clean
 clean::
