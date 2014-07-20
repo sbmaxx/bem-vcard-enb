@@ -37,8 +37,8 @@ REMOTE_PATH = /var/www/vhosts/rozhdestvenskiy.ru/public/
 .PHONY: deploy
 deploy:
 	$(REMOTE_COPY) pages/index/index.html $(REMOTE_DOMAIN):$(REMOTE_PATH)
-	ssh $(REMOTE_DOMAIN) "mkdir -p $(REMOTE_PATH)blocks/fonts"
-	$(REMOTE_COPY) -r blocks/font $(REMOTE_DOMAIN):$(REMOTE_PATH)blocks/fonts
+	ssh $(REMOTE_DOMAIN) "mkdir -p $(REMOTE_PATH)blocks/font"
+	$(REMOTE_COPY) -r blocks/font $(REMOTE_DOMAIN):$(REMOTE_PATH)blocks/font
 
 .PHONY: clean
 clean::
