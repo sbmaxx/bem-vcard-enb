@@ -23,7 +23,6 @@ $(ENB):: install
 .PHONY: install
 install:
 	@$(NPM) install
-	@$(BOWER) install
 
 .PHONY: production development
 production development:
