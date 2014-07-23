@@ -136,6 +136,7 @@ module.exports = function(bh) {
             },
             {
                 elem: 'position',
+                cls: 'title',
                 content: json.data.position
             }
         ]);
