@@ -116,7 +116,7 @@ var Card = (function() {
         },
 
         _getLangFromHash: function() {
-            var lang = location.hash.match(/l=(\w{2})/);
+            var lang = location.hash.match(/(\w{2})/);
             return lang ? lang[1] : '';
         }
     }

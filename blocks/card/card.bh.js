@@ -40,7 +40,8 @@ module.exports = function(bh) {
                 elem: 'side',
                 mix: [{ elem: 'layout' }],
                 attrs: {
-                    'data-lang': lang
+                    'data-lang': lang,
+                    id: lang
                 },
                 mods: {
                     lang: lang,
@@ -77,7 +78,7 @@ module.exports = function(bh) {
                          'data-lang': lang
                      },
                      elemMods: mods,
-                     url: '#?l=' + lang,
+                     url: '#' + lang,
                      content: lang
                  };
 
@@ -235,7 +236,7 @@ module.exports = function(bh) {
 
     bh.match('card__site', function(ctx, json) {
         ctx.content({
-            cls: 'url fn',
+            cls: 'url',
             elem: 'link',
             url: 'http://' + ctx.content(),
             content: ctx.content()
