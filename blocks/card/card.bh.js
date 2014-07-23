@@ -167,7 +167,7 @@ module.exports = function(bh) {
                 },
                 {
                     tag: 'a',
-                    cls: 'value hcard-link',
+                    cls: 'hcard-link',
                     attrs: {
                         href: 'tel:' + json.data.phoneRaw + (json.data.phoneAdd ? ';ext=' + json.data.phoneAdd : '')
                     },
@@ -192,7 +192,7 @@ module.exports = function(bh) {
                 },
                 {
                     tag: 'a',
-                    cls: 'value hcard-link',
+                    cls: 'hcard-link',
                     attrs: {
                         href: 'tel:' + json.data.cellularRaw
                     },
