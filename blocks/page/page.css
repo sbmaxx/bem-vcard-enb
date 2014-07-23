@@ -16,3 +16,15 @@ html, body
     color: #000;
     background: #EDEDED;
 }
+
+.hcard-hidden
+{
+    overflow: hidden;
+    display: none;
+}
+
+.hcard-link
+{
+    color: #000;
+    text-decoration: none;
+}

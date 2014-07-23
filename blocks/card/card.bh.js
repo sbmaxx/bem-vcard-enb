@@ -36,6 +36,7 @@ module.exports = function(bh) {
 
         json.order.forEach(function(lang, i) {
             content.push({
+                cls: 'vcard',
                 elem: 'side',
                 mix: [{ elem: 'layout' }],
                 attrs: {
@@ -50,7 +51,7 @@ module.exports = function(bh) {
                         elem: 'rectangle-container',
                         content: {
                             elem: 'rectangle',
-                            card: json.cards[lang]
+                            data: json.cards[lang]
                         }
                     },
                     {
@@ -89,11 +90,14 @@ module.exports = function(bh) {
 
     bh.match('card__rectangle', function(ctx, json) {
 
+        json.data.contact.phoneRaw = json.data.contact.phone.replace(/\(|\)|\s|\-/g, '');
+        json.data.contact.cellularRaw = json.data.contact.cellular.replace(/\(|\)|\s|\-/g, '');
+
         ctx.content([
             {
                 elem: 'logo',
-                lang: json.card.lang,
-                site: json.card.contact.site
+                lang: json.data.lang,
+                site: json.data.contact.site
             },
             {
                 elem: 'text',
@@ -101,20 +105,20 @@ module.exports = function(bh) {
                     {
                         elem: 'title',
                         data: {
-                            name: json.card.name,
-                            position: json.card.position
+                            name: json.data.name,
+                            position: json.data.position
                         },
-                        lang: json.card.lang
+                        lang: json.data.lang
                     },
                     {
                         elem: 'contact',
-                        data: json.card.contact,
-                        lang: json.card.lang
+                        data: json.data.contact,
+                        lang: json.data.lang
                     },
                     {
                         elem: 'extra',
-                        data: json.card.extra,
-                        lang: json.card.lang
+                        data: json.data.extra,
+                        lang: json.data.lang
                     }
                 ]
             }
@@ -126,6 +130,7 @@ module.exports = function(bh) {
         ctx.content([
             {
                 elem: 'name',
+                cls: 'fn',
                 content: json.data.name
             },
             {
@@ -150,26 +155,58 @@ module.exports = function(bh) {
             lang: json.lang
         });
 
-        json.phone && content.push({
+        json.data.phone && content.push({
             elem: 'phone',
+            cls: 'tel',
             content: [
-                i18n[json.lang].tel,
-                json.data.phone,
-                json.data.phoneAdd
-                    ? i18n[json.lang].phoneAdd + json.data.phoneAdd
-                    : ''
+                {
+                    tag: 'span',
+                    cls: 'type hcard-hidden',
+                    content: 'work'
+                },
+                {
+                    tag: 'a',
+                    cls: 'value hcard-link',
+                    attrs: {
+                        href: 'tel:' + json.data.phoneRaw + (json.data.phoneAdd ? ';ext=' + json.data.phoneAdd : '')
+                    },
+                    content: [
+                        i18n[json.lang].tel,
+                        json.data.phone,
+                        json.data.phoneAdd
+                            ? i18n[json.lang].phoneAdd + json.data.phoneAdd
+                            : ''
+                    ]
+                }
             ]
         });
 
-        ['cellular', 'fax', 'site'].forEach(function(prop) {
-            json.data[prop] && content.push({
-                elem: prop,
-                content: [
-                    i18n[json.lang][prop] || '',
-                    json.data[prop]
-                ].join('')
-            });
+        json.data.cellular && content.push({
+            elem: 'cellular',
+            content: [
+                {
+                    tag: 'span',
+                    cls: 'type hcard-hidden',
+                    content: 'cell'
+                },
+                {
+                    tag: 'a',
+                    cls: 'value hcard-link',
+                    attrs: {
+                        href: 'tel:' + json.data.cellularRaw
+                    },
+                    content: [
+                        i18n[json.lang].cellular,
+                        json.data.cellular
+                    ]
+                }
+            ]
         });
+
+        json.data.site && content.push({
+            elem: 'site',
+            content: json.data.site
+        })
 
         ctx.content(content, true);
 
@@ -198,6 +235,7 @@ module.exports = function(bh) {
 
     bh.match('card__site', function(ctx, json) {
         ctx.content({
+            cls: 'url fn',
             elem: 'link',
             url: 'http://' + ctx.content(),
             content: ctx.content()
@@ -216,6 +254,7 @@ module.exports = function(bh) {
 
     bh.match('card__email', function(ctx) {
         ctx.content({
+            cls: 'email',
             elem: 'link',
             url: 'mailto:' + ctx.content(),
             content: ctx.content()
