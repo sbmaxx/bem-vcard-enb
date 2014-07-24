@@ -36,12 +36,10 @@ module.exports = function(bh) {
 
         json.order.forEach(function(lang, i) {
             content.push({
-                cls: 'vcard',
                 elem: 'side',
                 mix: [{ elem: 'layout' }],
                 attrs: {
-                    'data-lang': lang,
-                    id: lang
+                    'data-lang': lang
                 },
                 mods: {
                     lang: lang,
@@ -131,12 +129,10 @@ module.exports = function(bh) {
         ctx.content([
             {
                 elem: 'name',
-                cls: 'fn',
                 content: json.data.name
             },
             {
                 elem: 'position',
-                cls: 'title',
                 content: json.data.position
             }
         ]);
@@ -145,7 +141,6 @@ module.exports = function(bh) {
     bh.match('card__name', function(ctx) {
         ctx.tag('h1');
     });
-
 
     bh.match('card__contact', function(ctx, json) {
 
@@ -161,47 +156,19 @@ module.exports = function(bh) {
             elem: 'phone',
             cls: 'tel',
             content: [
-                {
-                    tag: 'span',
-                    cls: 'type hcard-hidden',
-                    content: 'work'
-                },
-                {
-                    tag: 'a',
-                    cls: 'value hcard-link',
-                    attrs: {
-                        href: 'tel:' + json.data.phoneRaw + (json.data.phoneAdd ? ';ext=' + json.data.phoneAdd : '')
-                    },
-                    content: [
-                        i18n[json.lang].tel,
-                        json.data.phone,
-                        json.data.phoneAdd
-                            ? i18n[json.lang].phoneAdd + json.data.phoneAdd
-                            : ''
-                    ]
-                }
+                i18n[json.lang].tel,
+                json.data.phone,
+                json.data.phoneAdd
+                    ? i18n[json.lang].phoneAdd + json.data.phoneAdd
+                    : ''
             ]
         });
 
         json.data.cellular && content.push({
             elem: 'cellular',
             content: [
-                {
-                    tag: 'span',
-                    cls: 'type hcard-hidden',
-                    content: 'cell'
-                },
-                {
-                    tag: 'a',
-                    cls: 'value hcard-link',
-                    attrs: {
-                        href: 'tel:' + json.data.cellularRaw
-                    },
-                    content: [
-                        i18n[json.lang].cellular,
-                        json.data.cellular
-                    ]
-                }
+                i18n[json.lang].cellular,
+                json.data.cellular
             ]
         });
 
@@ -237,7 +204,6 @@ module.exports = function(bh) {
 
     bh.match('card__site', function(ctx, json) {
         ctx.content({
-            cls: 'url',
             elem: 'link',
             url: 'http://' + ctx.content(),
             content: ctx.content()
@@ -256,7 +222,6 @@ module.exports = function(bh) {
 
     bh.match('card__email', function(ctx) {
         ctx.content({
-            cls: 'email',
             elem: 'link',
             url: 'mailto:' + ctx.content(),
             content: ctx.content()
