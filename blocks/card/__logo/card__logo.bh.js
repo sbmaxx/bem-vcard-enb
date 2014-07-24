@@ -2,11 +2,23 @@ module.exports = function(bh) {
 
     bh.match('card__logo', function(ctx, json) {
 
-        ctx.tag('a');
+        ctx.content([
+            {
+                tag: 'a',
+                attrs: {
+                    href: 'http://' + json.site
+                },
+                content:
+                    {
+                        tag: 'span',
+                        content: json.name,
+                        attrs: {
+                            itemprop: 'affiliation'
+                        }
+                    }
 
-        ctx.attrs({
-            href: 'http://' + json.site
-        });
+            }
+        ])
 
     });
 

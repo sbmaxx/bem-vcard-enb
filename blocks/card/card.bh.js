@@ -155,7 +155,7 @@ module.exports = function(bh) {
 
     bh.match('card__position', function(ctx) {
         ctx.attrs({
-            itemprop: 'position'
+            itemprop: 'title'
         });
     });
 
@@ -191,18 +191,30 @@ module.exports = function(bh) {
 
     bh.match('card__country', function(ctx) {
         ctx.tag('span');
+        ctx.attrs({
+            itemprop: 'country-name'
+        });
     });
 
     bh.match('card__city', function(ctx) {
         ctx.tag('span');
+        ctx.attrs({
+            itemprop: 'locality'
+        });
     });
 
     bh.match('card__zip', function(ctx) {
         ctx.tag('span');
+        ctx.attrs({
+            itemprop: 'postal-code'
+        });
     });
 
     bh.match('card__street-address', function(ctx) {
         ctx.tag('span');
+        ctx.attrs({
+            itemprop: 'street-address'
+        });
     });
 
     bh.match('card__contact', function(ctx, json) {
@@ -263,6 +275,9 @@ module.exports = function(bh) {
     bh.match('card__site', function(ctx, json) {
         ctx.content({
             elem: 'link',
+            attrs: {
+                itemprop: 'url'
+            },
             url: json.data.url,
             content: json.data.text
         }, true);
