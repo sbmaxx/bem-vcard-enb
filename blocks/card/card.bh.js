@@ -3,17 +3,17 @@ module.exports = function(bh) {
     var i18n = {
         ru: {
             tel: 'тел.: ',
+            telExt: ', доб. ',
             fax: 'факс: ',
-            cellular: 'моб.: ',
-            phoneAdd: ', доб. ',
+            cell: 'моб.: ',
             site: '',
             skype: 'skype: '
         },
         en: {
             tel: 'tel. ',
+            telExt: ' ext. ',
             fax: 'fax ',
-            cellular: 'cell. ',
-            phoneAdd: ' ext. ',
+            cell: 'cell. ',
             site: '',
             skype: 'skype: '
         }
@@ -39,7 +39,9 @@ module.exports = function(bh) {
                 elem: 'side',
                 mix: [{ elem: 'layout' }],
                 attrs: {
-                    'data-lang': lang
+                    'data-lang': lang,
+                    'itemscope': true,
+                    'itemtype' : 'http://data-vocabulary.org/Person'
                 },
                 mods: {
                     lang: lang,
@@ -89,14 +91,15 @@ module.exports = function(bh) {
 
     bh.match('card__rectangle', function(ctx, json) {
 
-        json.data.contact.phoneRaw = json.data.contact.phone.replace(/\(|\)|\s|\-/g, '');
-        json.data.contact.cellularRaw = json.data.contact.cellular.replace(/\(|\)|\s|\-/g, '');
+        json.data.contact.workRaw = json.data.contact.work.replace(/\(|\)|\s|\-/g, '');
+        json.data.contact.cellRaw = json.data.contact.cell.replace(/\(|\)|\s|\-/g, '');
 
         ctx.content([
             {
                 elem: 'logo',
                 lang: json.data.lang,
-                site: json.data.contact.site
+                site: json.data.company.site,
+                name: json.data.company.name
             },
             {
                 elem: 'text',
@@ -107,6 +110,11 @@ module.exports = function(bh) {
                             name: json.data.name,
                             position: json.data.position
                         },
+                        lang: json.data.lang
+                    },
+                    {
+                        elem: 'address',
+                        data: json.data.address,
                         lang: json.data.lang
                     },
                     {
@@ -140,45 +148,15 @@ module.exports = function(bh) {
 
     bh.match('card__name', function(ctx) {
         ctx.tag('h1');
+        ctx.attrs({
+            itemprop: 'name'
+        });
     });
 
-    bh.match('card__contact', function(ctx, json) {
-
-        var content = [];
-
-        content.push({
-            elem: 'address',
-            data: json.data,
-            lang: json.lang
+    bh.match('card__position', function(ctx) {
+        ctx.attrs({
+            itemprop: 'position'
         });
-
-        json.data.phone && content.push({
-            elem: 'phone',
-            cls: 'tel',
-            content: [
-                i18n[json.lang].tel,
-                json.data.phone,
-                json.data.phoneAdd
-                    ? i18n[json.lang].phoneAdd + json.data.phoneAdd
-                    : ''
-            ]
-        });
-
-        json.data.cellular && content.push({
-            elem: 'cellular',
-            content: [
-                i18n[json.lang].cellular,
-                json.data.cellular
-            ]
-        });
-
-        json.data.site && content.push({
-            elem: 'site',
-            content: json.data.site
-        })
-
-        ctx.content(content, true);
-
     });
 
     bh.match('card__address', function(ctx, json) {
@@ -189,42 +167,112 @@ module.exports = function(bh) {
 
         var content = [];
 
-        content.push(order.map(function(el) {
-            return json.data[el];
-        }).join(', '));
+        order.forEach(function(el, i) {
+            content.push({
+                elem: el,
+                content: json.data[el]
+            });
+            if (i !== order.length - 1) {
+                content.push(', ');
+            }
+        });
 
         content.push(
             { tag: 'br' },
-            json.data.address
+            {
+                elem: 'street-address',
+                content: json.data['street-address']
+            }
         );
 
-        ctx.content(content)
+        ctx.content(content, true);
+
+    });
+
+    bh.match('card__country', function(ctx) {
+        ctx.tag('span');
+    });
+
+    bh.match('card__city', function(ctx) {
+        ctx.tag('span');
+    });
+
+    bh.match('card__zip', function(ctx) {
+        ctx.tag('span');
+    });
+
+    bh.match('card__street-address', function(ctx) {
+        ctx.tag('span');
+    });
+
+    bh.match('card__contact', function(ctx, json) {
+
+        var content = [];
+
+        json.data.work && content.push({
+            elem: 'tel',
+            elemMods: { type: 'work' },
+            content: [
+                i18n[json.lang].tel,
+                json.data.work,
+                json.data.workExt
+                    ? i18n[json.lang].telExt + json.data.workExt
+                    : ''
+            ]
+        });
+
+        json.data.cell && content.push({
+            elem: 'tel',
+            elemMods: { type: 'cellular' },
+            content: [
+                i18n[json.lang].cell,
+                json.data.cell
+            ]
+        });
+
+        content.push({
+            elem: 'gap'
+        });
+
+        ['email', 'site'].forEach(function(prop) {
+            if (json.data[prop]) {
+                content.push({
+                    elem: prop,
+                    data: json.data[prop]
+                })
+            }
+        });
+
+        content.push({
+            elem: 'gap'
+        });
+
+        ['skype','github'].forEach(function(prop) {
+            if (json.data[prop]) {
+                content.push({
+                    elem: prop,
+                    content: json.data[prop]
+                });
+            }
+        });
+
+        ctx.content(content, true);
 
     });
 
     bh.match('card__site', function(ctx, json) {
         ctx.content({
             elem: 'link',
-            url: 'http://' + ctx.content(),
-            content: ctx.content()
+            url: json.data.url,
+            content: json.data.text
         }, true);
     });
 
-    bh.match('card__extra', function(ctx, json) {
-        ctx.content(['email', 'github', 'skype'].map(function(prop) {
-            return json.data[prop] ? ({
-                elem: prop,
-                lang: json.lang,
-                content: json.data[prop]
-            }) : '';
-        }));
-    });
-
-    bh.match('card__email', function(ctx) {
+    bh.match('card__email', function(ctx, json) {
         ctx.content({
             elem: 'link',
-            url: 'mailto:' + ctx.content(),
-            content: ctx.content()
+            url: 'mailto:' + json.data,
+            content: json.data
         }, true);
     });
 
@@ -238,7 +286,7 @@ module.exports = function(bh) {
 
     bh.match('card__skype', function(ctx, json) {
         ctx.content([
-            i18n[json.lang].skype,
+            'skype: ',
             {
                 elem: 'link',
                 url: 'skype:' + ctx.content() + '?chat',

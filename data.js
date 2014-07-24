@@ -5,19 +5,26 @@ module.exports = {
             lang: 'ru',
             name: 'Роман Рождественский',
             position: 'Руководитель службы интерфейсов мультимедийных поисков',
-            contact: {
+            address: {
                 country: 'Россия',
                 city: 'Москва',
                 zip: '119021',
-                address: 'ул. Льва Толстого, д. 16',
-                phone: '+7 (495) 739-70-00',
-                phoneAdd: '6598',
-                cellular: '+7 (965) 214-04-62',
+                'street-address': 'ул. Льва Толстого, д. 16'
+            },
+            company: {
+                name: 'Яндекс',
                 site: 'yandex.ru'
             },
-            extra: {
+            contact: {
+                work: '+7 (495) 739-70-00',
+                workExt: '6598',
+                cell: '+7 (965) 214-04-62',
                 email: 'sbmaxx@yandex-team.ru',
                 skype: 'sbmaxx',
+                site: {
+                    url: 'http://rozhdestvenskiy.ru/',
+                    text: 'rozhdestvenskiy.ru'
+                },
                 github: 'sbmaxx'
             }
         },
@@ -25,19 +32,26 @@ module.exports = {
             lang: 'en',
             name: 'Roman Rozhdestvenskiy',
             position: 'Head of multimedia search interfaces department',
-            contact: {
+            address: {
                 country: 'Russia',
                 city: 'Moscow',
                 zip: '119021',
-                address: '16, Leo Tolstoy St.',
-                phone: '+7 (495) 739-70-00',
-                phoneAdd: '6598',
-                cellular: '+7 (965) 214-04-62',
+                'street-address': '16, Leo Tolstoy St.'
+            },
+            company: {
+                name: 'Yandex',
                 site: 'yandex.com'
             },
-            extra: {
+            contact: {
+                work: '+7 (495) 739-70-00',
+                workExt: '6598',
+                cell: '+7 (965) 214-04-62',
                 email: 'sbmaxx@yandex-team.ru',
                 skype: 'sbmaxx',
+                site: {
+                    url: 'http://rozhdestvenskiy.ru/#en',
+                    text: 'rozhdestvenskiy.ru'
+                },
                 github: 'sbmaxx'
             }
         }
