@@ -34,7 +34,7 @@ module.exports = function(bh) {
 
         var content = [];
 
-        json.order.forEach(function(lang, i) {
+        json.order.forEach(function(lang) {
             content.push({
                 elem: 'side',
                 mix: [{ elem: 'layout' }],
@@ -45,7 +45,7 @@ module.exports = function(bh) {
                 },
                 mods: {
                     lang: lang,
-                    state: i === 0 ? 'opened' : 'closed'
+                    state: 'opened'
                 },
                 content: [
                     {

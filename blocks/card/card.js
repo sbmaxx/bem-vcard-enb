@@ -34,6 +34,9 @@ var Card = (function() {
 
             this._onHashChange();
 
+            removeClass(this.sides[1].elem, modSideOpened);
+            addClass(this.sides[1].elem, modSideClosed);
+
             setTimeout(function() {
                 addClass(Card.card, modAnimation);
                 addClass(Card.card, modVisible);
