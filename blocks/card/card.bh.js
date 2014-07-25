@@ -165,6 +165,12 @@ module.exports = function(bh) {
             ? ['country', 'city', 'zip']
             : ['city', 'zip', 'country'];
 
+        ctx.attrs({
+            itemprop: 'address',
+            itemscope: true,
+            itemtype: 'http://data-vocabulary.org/Address'
+        });
+
         var content = [];
 
         order.forEach(function(el, i) {
