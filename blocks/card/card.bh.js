@@ -119,7 +119,7 @@ module.exports = function(bh) {
                     },
                     {
                         elem: 'contact',
-                        data: json.data.contact,
+                        data: json.data,
                         lang: json.data.lang
                     },
                     {
@@ -146,7 +146,7 @@ module.exports = function(bh) {
         ]);
     });
 
-    bh.match('card__name', function(ctx) {
+    bh.match('card__name', function(ctx, json) {
         ctx.tag('h1');
         ctx.attrs({
             itemprop: 'name'
@@ -219,26 +219,27 @@ module.exports = function(bh) {
 
     bh.match('card__contact', function(ctx, json) {
 
-        var content = [];
+        var content = [],
+            data = json.data.contact;
 
-        json.data.work && content.push({
+        data.work && content.push({
             elem: 'tel',
             elemMods: { type: 'work' },
             content: [
                 i18n[json.lang].tel,
-                json.data.work,
-                json.data.workExt
-                    ? i18n[json.lang].telExt + json.data.workExt
+                data.work,
+                data.workExt
+                    ? i18n[json.lang].telExt + data.workExt
                     : ''
             ]
         });
 
-        json.data.cell && content.push({
+        data.cell && content.push({
             elem: 'tel',
             elemMods: { type: 'cellular' },
             content: [
                 i18n[json.lang].cell,
-                json.data.cell
+                data.cell
             ]
         });
 
@@ -247,10 +248,10 @@ module.exports = function(bh) {
         });
 
         ['email', 'site'].forEach(function(prop) {
-            if (json.data[prop]) {
+            if (data[prop]) {
                 content.push({
                     elem: prop,
-                    data: json.data[prop]
+                    data: data[prop]
                 })
             }
         });
@@ -260,10 +261,10 @@ module.exports = function(bh) {
         });
 
         ['skype','github'].forEach(function(prop) {
-            if (json.data[prop]) {
+            if (data[prop]) {
                 content.push({
                     elem: prop,
-                    content: json.data[prop]
+                    data: data[prop] || json.data.nickname
                 });
             }
         });
@@ -291,11 +292,11 @@ module.exports = function(bh) {
         }, true);
     });
 
-    bh.match('card__github', function(ctx) {
+    bh.match('card__github', function(ctx, json) {
         ctx.content({
             elem: 'link',
-            url: 'http://github.com/' + ctx.content(),
-            content: 'github.com/' + ctx.content()
+            url: 'http://github.com/' + json.data,
+            content: 'github.com/' + json.data
         }, true);
     });
 
@@ -304,8 +305,14 @@ module.exports = function(bh) {
             'skype: ',
             {
                 elem: 'link',
-                url: 'skype:' + ctx.content() + '?chat',
-                content: ctx.content()
+                url: 'skype:' + json.data + '?chat',
+                content: {
+                    tag: 'span',
+                    attrs: {
+                        itemprop: 'nickname'
+                    },
+                    content: json.data
+                }
             }
         ], true);
     });

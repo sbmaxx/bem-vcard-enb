@@ -4,6 +4,7 @@ module.exports = {
         ru: {
             lang: 'ru',
             name: 'Роман Рождественский',
+            nickname: 'sbmaxx',
             position: 'Руководитель службы интерфейсов мультимедийных поисков',
             address: {
                 country: 'Россия',
@@ -20,17 +21,18 @@ module.exports = {
                 workExt: '6598',
                 cell: '+7 (965) 214-04-62',
                 email: 'sbmaxx@yandex-team.ru',
-                skype: 'sbmaxx',
                 site: {
                     url: 'http://rozhdestvenskiy.ru/',
                     text: 'rozhdestvenskiy.ru'
                 },
-                github: 'sbmaxx'
+                skype: true,
+                github: true
             }
         },
         en: {
             lang: 'en',
             name: 'Roman Rozhdestvenskiy',
+            nickname: 'sbmaxx',
             position: 'Head of multimedia search interfaces department',
             address: {
                 country: 'Russia',
@@ -47,12 +49,12 @@ module.exports = {
                 workExt: '6598',
                 cell: '+7 (965) 214-04-62',
                 email: 'sbmaxx@yandex-team.ru',
-                skype: 'sbmaxx',
                 site: {
                     url: 'http://rozhdestvenskiy.ru/#en',
                     text: 'rozhdestvenskiy.ru'
                 },
-                github: 'sbmaxx'
+                skype: true,
+                github: true
             }
         }
     }
