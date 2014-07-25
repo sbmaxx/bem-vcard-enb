@@ -30,12 +30,13 @@ var Card = (function() {
             this.sides = this.sides.map(fillLang);
             this.links = this.links.map(fillLang);
 
+            // trying to fix google's markup tool
+            removeClass(this.sides[1].elem, modSideOpened);
+            addClass(this.sides[1].elem, modSideClosed);
+
             window.addEventListener('hashchange', this._onHashChange.bind(this), false);
 
             this._onHashChange();
-
-            removeClass(this.sides[1].elem, modSideOpened);
-            addClass(this.sides[1].elem, modSideClosed);
 
             setTimeout(function() {
                 addClass(Card.card, modAnimation);
