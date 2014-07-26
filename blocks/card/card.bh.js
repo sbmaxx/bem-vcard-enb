@@ -270,7 +270,7 @@ module.exports = function(bh) {
             if (data[prop]) {
                 content.push({
                     elem: prop,
-                    data: data[prop] || json.data.nickname
+                    data: json.data.nickname || data[prop]
                 });
             }
         });
