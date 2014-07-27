@@ -301,7 +301,7 @@ module.exports = function(bh) {
     bh.match('card__github', function(ctx, json) {
         ctx.content({
             elem: 'link',
-            url: 'http://github.com/' + json.data,
+            url: '//github.com/' + json.data,
             content: 'github.com/' + json.data
         }, true);
     });

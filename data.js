@@ -22,7 +22,7 @@ module.exports = {
                 cell: '+7 (965) 214-04-62',
                 email: 'sbmaxx@yandex-team.ru',
                 site: {
-                    url: 'http://rozhdestvenskiy.ru/',
+                    url: '//rozhdestvenskiy.ru/',
                     text: 'rozhdestvenskiy.ru'
                 },
                 skype: true,
@@ -50,7 +50,7 @@ module.exports = {
                 cell: '+7 (965) 214-04-62',
                 email: 'sbmaxx@yandex-team.ru',
                 site: {
-                    url: 'http://rozhdestvenskiy.ru/#en',
+                    url: '//rozhdestvenskiy.ru/#en',
                     text: 'rozhdestvenskiy.ru'
                 },
                 skype: true,
