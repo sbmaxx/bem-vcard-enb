@@ -3,15 +3,16 @@
 ![vcard example](https://raw.githubusercontent.com/sbmaxx/bem-vcard-enb/v2/example.png)
 
 Визитная карточка по БЭМ:
-* сборка на enb;
-* шаблоны на bh;
-* stylus;
+* сборка на [enb](https://github.com/enb-make/enb);
+* шаблоны на [bh](https://github.com/enb-make/bh);
+* [stylus](https://github.com/learnboost/stylus);
 * заинлайненные SVG-логотипы для поддержки Retina;
 * заинлайненная статика (JS, CSS);
-* borschik (uglify js) для минимизации статики;
-* plain javascript*;
-* 0 внешних запросов, всего 38.9KB;
-* корректная поддержка различных разрешений;
+* [borschik](https://github.com/bem/borschik) для минимизации статики;
+* plain javascript на клиенте*;
+* нет внешних запросов;
+* полный размер документа всего 38.9KB;
+* корректная поддержка различных разрешений на мобильных устройствах;
 * поддержка [Person microdata](http://www.data-vocabulary.org/Person).
 
 \* — для версии с bem-core/bem-components необходимо переключиться на ветку `v2`
