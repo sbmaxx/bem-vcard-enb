@@ -11,7 +11,8 @@
 * borschik (uglify js) для минимизации статики;
 * plain javascript*;
 * 0 внешних запросов, всего 38.9KB;
-* корректная поддержка различных разрешений.
+* корректная поддержка различных разрешений;
+* поддержка [Person microdata](http://www.data-vocabulary.org/Person).
 
 \* — для версии с bem-core/bem-components необходимо переключиться на ветку `v2`
 
@@ -31,4 +32,4 @@ scp pages/index/index.html $HOSTING:/var/www/
 scp -r blocks/font/ $HOSTING:/var/www/blocks/font/
 ```
 
-http://rozhdestvenskiy.ru
+https://rozhdestvenskiy.ru
