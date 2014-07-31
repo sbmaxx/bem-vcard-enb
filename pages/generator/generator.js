@@ -15,7 +15,7 @@ module.exports = function(data, root) {
         title = data.cards[lang].name;
 
     return  {
-        block: 'page',
+        block: 'page', 
         title: title,
         favicon: favicons[lang],
         head: [
@@ -27,20 +27,22 @@ module.exports = function(data, root) {
                 }
             },
             {
-                elem: 'js',
-                content: fs.readFileSync(root + 'pages/index/_index.js', { encoding: 'utf8' })
-            },
-            {
                 elem: 'css',
                 content: fs.readFileSync(root + 'pages/index/_index.css', { encoding: 'utf8' })
             }
         ],
-        content: {
-            block: 'card',
-            order: data.order,
-            cards: data.cards,
-            favicons: favicons
-        }
+        content: [
+            {
+                block: 'card',
+                order: data.order,
+                cards: data.cards,
+                favicons: favicons
+            },
+            {
+                tag: 'script',
+                content: fs.readFileSync(root + 'pages/index/_index.js', { encoding: 'utf8' })
+            }
+        ]
     };
 
 };
