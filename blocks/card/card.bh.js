@@ -50,15 +50,18 @@ module.exports = function(bh) {
                 content: [
                     {
                         elem: 'rectangle-container',
-                        content: {
-                            elem: 'rectangle',
-                            data: json.cards[lang]
-                        }
+                        content: [
+                            {
+                                elem: 'rectangle',
+                                data: json.cards[lang]
+                            },
+                            { elem: 'rectangle-shadow' }
+                        ]
                     },
                     {
                         elem: 'triangle-container',
                         content: [
-                            { elem: 'triangle'},
+                            { elem: 'triangle-background'},
                             { elem: 'triangle-shadow' }
                         ]
                     }

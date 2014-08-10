@@ -43,6 +43,7 @@ height = 316px
     rectangleWidth = 465px
     rectangleHeight = 300px
     shadowSize = 8px
+    rectangeTriangleIntersection = 10px
 
     &__rectangle-container {
         position: absolute;
@@ -60,14 +61,38 @@ height = 316px
         width: rectangleWidth;
         height: rectangleHeight;
         background: #fff;
-        box-shadow: 0 0 shadowSize rgba(0,0,0,.3);
+    }
+
+    &__rectangle-shadow {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: rectangleWidth - 2;
+        height: rectangleHeight + 16;
+        overflow: hidden;
+        &:before {
+            position: absolute;
+            top: shadowSize
+            bottom: shadowSize
+            left: shadowSize
+            right: -(rectangeTriangleIntersection);
+            content: '';
+            box-shadow: 0 0 shadowSize rgba(0,0,0,.3);
+        }
+
     }
 
     &__triangle-container {
         top: shadowSize
-        margin-left: -80px;
+        margin-left: -90px;
         position: absolute;
+        z-index: 3;
         left: 100%;
+        top: 0;
+        bottom: 0;
+        width: 200px;
+        overflow: hidden;
     }
 
     &__triangle {
@@ -81,30 +106,51 @@ height = 316px
         z-index: 3
     }
 
+    triangle(){
+        position: absolute;
+        width: 100px;
+        left: rectangeTriangleIntersection - 58;
+        content: "";
+        z-index: -1;
+        height: (rectangleHeight / 2);
+    }
+    triangle-top(){
+        triangle();
+        top: shadowSize;
+        transform: skew(28.3deg);
+    }
+    triangle-bottom(){
+        triangle();
+        top: (shadowSize + rectangleHeight / 2);
+        transform: skew(-28.3deg);
+    }
+
     &__triangle-shadow {
         position: absolute;
         &:before {
-            top: 0;
-            content: "";
-            position: absolute;
-            background: #fff;
-            width: 1px;
-            left: 38px
-            height: 150px;
-            transform: skew(28.3deg);
-            box-shadow: 3px 0px 3px 1px rgba(0,0,0,0.2)
+            triangle-top();
+            box-shadow: 0 0 shadowSize rgba(0,0,0,.3);
         }
+
         &:after {
-            top: 150px;
-            content: "";
-            position: absolute;
-            background: #fff;
-            width: 1px;
-            left: 39px
-            height: 150px;
-            transform: skew(-28.3deg);
-            box-shadow: 3px 1px 3px 0px rgba(0,0,0,0.35)
+            triangle-bottom();
+            box-shadow: 0 0 shadowSize rgba(0,0,0,.3);
         }
+
+    }
+    &__triangle-background {
+        position: absolute;
+        z-index: 1;
+        &:before {
+            triangle-top();
+            background: #fff;
+        }
+
+        &:after {
+            triangle-bottom();
+            background: #fff;
+        }
+
     }
 
     &__title {
