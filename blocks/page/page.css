@@ -14,11 +14,3 @@ html, body {
     color: #000;
     background: #EDEDED;
 }
-
-a, a:visited {
-    color: #4183c4;
-    text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
-}

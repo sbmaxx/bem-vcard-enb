@@ -114,9 +114,23 @@ height = 300px
         margin-left: 10px;
     }
 
+    &__link {
+        text-decoration: none;
+        color: #4183c4;
+        &:visited {
+            color: #4183c4;
+        }
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
     &__link_disabled {
         color: #000;
         text-decoration: none;
+        &:visited {
+            color: #000
+        }
     }
 
 }
