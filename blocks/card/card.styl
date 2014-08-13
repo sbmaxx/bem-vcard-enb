@@ -1,5 +1,5 @@
 width = 553px
-height = 316px
+height = 300px
 
 .ua_js_yes .card {
     opacity: 0;
@@ -40,63 +40,17 @@ height = 316px
         left: 0;
     }
 
-    rectangleWidth = 465px
-    rectangleHeight = 300px
-    shadowSize = 8px
-    rectangeTriangleIntersection = 10px
-
-    &__rectangle-container {
-        position: absolute;
-        z-index: 2;
-        // clip: rect(auto, auto, auto, auto);
-        width: rectangleWidth + shadowSize + 1
-        height: rectangleHeight + shadowSize * 2
-    }
-
     &__rectangle {
-        position: relative
-        top: shadowSize
-        bottom: shadowSize
-        left: shadowSize
-        width: rectangleWidth;
-        height: rectangleHeight;
+        z-index: 2;
+        position: absolute;
+        width: 465px;
+        height: height;
         background: #fff;
     }
 
-    &__rectangle-shadow {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        width: rectangleWidth - 2;
-        height: rectangleHeight + 16;
-        overflow: hidden;
-        &:before {
-            position: absolute;
-            top: shadowSize
-            bottom: shadowSize
-            left: shadowSize
-            right: -(rectangeTriangleIntersection);
-            content: '';
-            box-shadow: 0 0 shadowSize rgba(0,0,0,.3);
-            border-radius: 1px; // fixes shadow on zoom
-        }
-
-    }
-
-    &__triangle-container {
-        top: shadowSize
-        margin-left: -90px;
-        position: absolute;
-        z-index: 3;
-        left: 100%;
-        top: 0;
-        bottom: 0;
-        width: 200px;
-        overflow: hidden;
-    }
-
     &__triangle {
+        left: 100%;
+        margin-left: -87px;
         position: absolute;
         border-color: rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) #fff;
         border-style: solid;
@@ -105,53 +59,6 @@ height = 316px
         height: 0;
         transform: rotate(0deg)
         z-index: 3
-    }
-
-    triangle(){
-        position: absolute;
-        width: 100px;
-        left: rectangeTriangleIntersection - 58;
-        content: "";
-        z-index: -1;
-        height: (rectangleHeight / 2);
-    }
-    triangle-top(){
-        triangle();
-        top: shadowSize;
-        transform: skew(28.3deg);
-    }
-    triangle-bottom(){
-        triangle();
-        top: (shadowSize + rectangleHeight / 2);
-        transform: skew(-28.3deg);
-    }
-
-    &__triangle-shadow {
-        position: absolute;
-        &:before {
-            triangle-top();
-            box-shadow: 0 0 shadowSize rgba(0,0,0,.3);
-        }
-
-        &:after {
-            triangle-bottom();
-            box-shadow: 0 0 shadowSize rgba(0,0,0,.3);
-        }
-
-    }
-    &__triangle-background {
-        position: absolute;
-        z-index: 1;
-        &:before {
-            triangle-top();
-            background: #fff;
-        }
-
-        &:after {
-            triangle-bottom();
-            background: #fff;
-        }
-
     }
 
     &__title {
