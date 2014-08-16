@@ -19,7 +19,7 @@
 
 ##Development
 ```bash
-git clone https://github./sbmaxx/bem-vcard-enb.git
+git clone https://github.com/sbmaxx/bem-vcard-enb.git
 cd bem-vcard-enb
 make install
 make
