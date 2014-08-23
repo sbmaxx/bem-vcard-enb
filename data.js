@@ -3,9 +3,9 @@ module.exports = {
     cards: {
         ru: {
             lang: 'ru',
-            name: 'Роман Рождественский',
-            nickname: 'sbmaxx',
-            position: 'Руководитель службы интерфейсов мультимедийных поисков',
+            name: 'Сергей Бережной',
+            position: ['Руководитель отдела', { tag: 'br' }, 'разработки поисковых веб-интерфейсов'],
+            nickname: 'veged',
             address: {
                 country: 'Россия',
                 city: 'Москва',
@@ -18,22 +18,18 @@ module.exports = {
             },
             contact: {
                 work: '+7 (495) 739-70-00',
-                workExt: '6598',
-                cell: '+7 (965) 214-04-62',
-                email: 'sbmaxx@yandex-team.ru',
-                site: {
-                    url: '//rozhdestvenskiy.ru/',
-                    text: 'rozhdestvenskiy.ru'
-                },
-                skype: true,
-                github: true
+                workExt: '6411',
+                cell: '+7 (906) 089-10-54',
+                email: 'veged@yandex-team.ru',
+                github: true,
+                twitter: true
             }
         },
         en: {
             lang: 'en',
-            name: 'Roman Rozhdestvenskiy',
-            nickname: 'sbmaxx',
-            position: 'Head of multimedia search interfaces department',
+            name: 'Sergey Berezhnoy',
+            position: 'Head of search web interfaces development department',
+            nickname: 'veged',
             address: {
                 country: 'Russia',
                 city: 'Moscow',
@@ -46,15 +42,11 @@ module.exports = {
             },
             contact: {
                 work: '+7 (495) 739-70-00',
-                workExt: '6598',
-                cell: '+7 (965) 214-04-62',
-                email: 'sbmaxx@yandex-team.ru',
-                site: {
-                    url: '//rozhdestvenskiy.ru/#en',
-                    text: 'rozhdestvenskiy.ru'
-                },
-                skype: true,
-                github: true
+                workExt: '6411',
+                cell: '+7 (906) 089-10-54',
+                email: 'veged@yandex-team.ru',
+                github: true,
+                twitter: true
             }
         }
     }
