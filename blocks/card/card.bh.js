@@ -259,11 +259,11 @@ module.exports = function(bh) {
             elem: 'gap'
         });
 
-        ['skype','github'].forEach(function(prop) {
+        ['skype','github', 'twitter'].forEach(function(prop) {
             if (data[prop]) {
                 content.push({
                     elem: prop,
-                    data: json.data.nickname || data[prop]
+                    data: data[prop] === true ? json.data.nickname : data[prop]
                 });
             }
         });
@@ -314,6 +314,14 @@ module.exports = function(bh) {
                 }
             }
         ], true);
+    });
+
+    bh.match('card__twitter', function(ctx, json) {
+        ctx.content({
+            elem: 'link',
+            url: '//twitter.com/' + json.data,
+            content: 'twitter.com/' + json.data
+        }, true);
     });
 
     bh.match('card__link', function(ctx, json) {
