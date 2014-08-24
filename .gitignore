@@ -9,3 +9,4 @@ pages/*/*.*
 !pages/*/*.bemjson.js
 !pages/*/*.bemdecl.js
 bower_components/*
+data.js

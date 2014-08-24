@@ -23,6 +23,7 @@ $(ENB):: install
 .PHONY: install
 install:
 	@$(NPM) install
+	@cp example_data.js data.js
 
 .PHONY: production development
 production development:
