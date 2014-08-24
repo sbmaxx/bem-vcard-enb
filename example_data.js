@@ -3,9 +3,9 @@ module.exports = {
     cards: {
         ru: {
             lang: 'ru',
-            name: 'Роман Рождественский',
-            nickname: 'sbmaxx',
-            position: 'Руководитель службы интерфейсов мультимедийных поисков',
+            name: 'Иван Иванов',
+            nickname: 'ivanivanovich',
+            position: 'Разработчик интерфейсов',
             address: {
                 country: 'Россия',
                 city: 'Москва',
@@ -18,22 +18,23 @@ module.exports = {
             },
             contact: {
                 work: '+7 (495) 739-70-00',
-                workExt: '6598',
-                cell: '+7 (965) 214-04-62',
-                email: 'sbmaxx@yandex-team.ru',
+                workExt: '0000',
+                cell: '+7 (555) 123-45-66',
+                email: 'ivanivanovich@yandex-team.ru',
                 site: {
-                    url: '//rozhdestvenskiy.ru/',
-                    text: 'rozhdestvenskiy.ru'
+                    url: '//ivanivanovich.ru/',
+                    text: 'ivanivanovich.ru'
                 },
                 skype: true,
-                github: true
+                github: true,
+                twitter: 'ivanivanovich'
             }
         },
         en: {
             lang: 'en',
-            name: 'Roman Rozhdestvenskiy',
-            nickname: 'sbmaxx',
-            position: 'Head of multimedia search interfaces department',
+            name: 'Ivan Ivanov',
+            nickname: 'ivanivanovich',
+            position: 'UI Developer',
             address: {
                 country: 'Russia',
                 city: 'Moscow',
@@ -46,15 +47,16 @@ module.exports = {
             },
             contact: {
                 work: '+7 (495) 739-70-00',
-                workExt: '6598',
-                cell: '+7 (965) 214-04-62',
-                email: 'sbmaxx@yandex-team.ru',
+                workExt: '000',
+                cell: '+7 (555) 123-45-67',
+                email: 'ivanivanovich@yandex-team.ru',
                 site: {
-                    url: '//rozhdestvenskiy.ru/#en',
-                    text: 'rozhdestvenskiy.ru'
+                    url: '//ivanivanovich.ru/#en',
+                    text: 'ivanivanovich.ru'
                 },
                 skype: true,
-                github: true
+                github: true,
+                twitter: 'ivanivanovich'
             }
         }
     }
