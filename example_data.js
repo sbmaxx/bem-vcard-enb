@@ -1,4 +1,5 @@
 module.exports = {
+    metrikaId: 0,
     order: ['ru', 'en'],
     cards: {
         ru: {
