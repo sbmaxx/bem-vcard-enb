@@ -8,7 +8,7 @@ ifneq (,$(findstring B,$(MAKEFLAGS)))
 	ENB_FLAGS := --no-cache
 endif
 
-all:: $(ENB) server
+all:: $(ENB) data.js server
 
 %:: $(ENB)
 	$(if $(findstring GNUmakefile,$@),,$(ENB) make $@ $(ENB_FLAGS))
@@ -23,6 +23,8 @@ $(ENB):: install
 .PHONY: install
 install:
 	@$(NPM) install
+
+data.js: example_data.js
 	@cp example_data.js data.js
 
 .PHONY: production development
