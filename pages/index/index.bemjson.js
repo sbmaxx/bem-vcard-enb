@@ -1,4 +1,5 @@
-var data = require('../../data.js'),
-    generator = require('../generator/generator.js');
+var root = '../../',
+    data = require(root + 'data.js'),
+    bemjson = require(root + 'bemjson.js');
 
-module.exports = generator(data);
+module.exports = bemjson(data);

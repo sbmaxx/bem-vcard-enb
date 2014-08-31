@@ -1,23 +1,16 @@
 var fs = require('fs');
-    // borschik = new (require('borschik/lib/techs/js').Tech)({ techOptions: {} });
-
-var favicons = {
-    ru: '//yastatic.net/morda-logo/i/favicon_islands.ico',
-    en: '//yastatic.net/morda-logo/i/favicon_comtr.ico'
-};
 
 module.exports = function(data, root, useInline) {
 
     root = root || '';
 
-    var data = data || require(root + '../../data.js'),
-        lang = data.order[0],
+    var lang = data.order[0],
         title = data.cards[lang].name;
 
     return  {
         block: 'page',
         title: title,
-        favicon: favicons[lang],
+        favicon: data.favicons[lang],
         head: [
             {
                 elem: 'meta',
@@ -39,7 +32,7 @@ module.exports = function(data, root, useInline) {
                 block: 'card',
                 order: data.order,
                 cards: data.cards,
-                favicons: favicons
+                favicons: data.favicons
             },
             useInline === false ? {
                 tag: 'script',
