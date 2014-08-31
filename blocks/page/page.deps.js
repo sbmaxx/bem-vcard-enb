@@ -6,6 +6,9 @@
         },
         {
             block: 'card'
+        },
+        {
+            block: 'metrika'
         }
     ],
     noDeps: [
