@@ -43,10 +43,10 @@ module.exports = function(data, root, useInline) {
                 tag: 'script',
                 content: fs.readFileSync(root + 'pages/index/_index.js', { encoding: 'utf8' })
             },
-            data.metrikaId && {
+            data.metrikaId ? {
                 block: 'metrika',
                 metrikaId: data.metrikaId
-            }
+            } : ''
         ]
     };
 
