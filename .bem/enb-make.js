@@ -26,7 +26,8 @@ module.exports = function (config) {
                     sourceTarget: "?.css",
                     destTarget: "_?.css",
                     minify: true,
-                    freeze: true
+                    freeze: true,
+                    tech: 'cleancss'
                 }]
             ]);
         });
