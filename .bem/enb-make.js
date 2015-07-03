@@ -36,7 +36,7 @@ module.exports = function (config) {
     config.node("pages/index", function (nodeConfig) {
 
         nodeConfig.addTechs([
-            [require("enb/techs/levels"), {
+            [require("enb-bem-techs/techs/levels"), {
                 levels: getLevels()
             }],
             [require("enb/techs/file-provider"), {
@@ -46,8 +46,8 @@ module.exports = function (config) {
                 target: "?.bemdecl.js"
             }],
             // require("enb/techs/bemdecl-from-bemjson"),
-            require("enb/techs/deps-old"),
-            require("enb/techs/files"),
+            require("enb-bem-techs/techs/deps-old"),
+            require("enb-bem-techs/techs/files"),
             [ require('enb-bh/techs/bh-server-include'), {
                 jsAttrName: 'data-bem',
                 jsAttrScheme: 'json'
