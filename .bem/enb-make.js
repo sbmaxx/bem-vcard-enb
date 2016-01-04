@@ -58,7 +58,7 @@ module.exports = function (config) {
             // [ require('enb-modules/techs/prepend-modules'), {
             //     source: '?.pre.js'
             // }],
-            require("enb-stylus/techs/css-stylus-with-autoprefixer"),
+            require("enb-stylus/techs/stylus"),
             require('./techs/html-from-bemjson-with-inlining')
         ]);
 
