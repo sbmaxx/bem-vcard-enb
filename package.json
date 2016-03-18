@@ -1,7 +1,7 @@
 {
   "author": "Roman Rozhdestvenskiy <sbmaxx@gmail.com>",
   "name": "bem-vcard-enb",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "git@github.com:sbmaxx/bem-vcard-enb.git"
