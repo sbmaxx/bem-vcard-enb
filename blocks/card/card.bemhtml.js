@@ -267,7 +267,7 @@ block('card').elem('site').content()(function() {
             itemprop: 'url'
         },
         url: this.ctx.data,
-        content: this.ctx.data.replace(/httpss?:\/\//, '')
+        content: this.ctx.data.replace(/https?:\/\//, '')
     };
 });
 
