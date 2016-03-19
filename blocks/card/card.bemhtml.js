@@ -63,7 +63,7 @@ block('card')(
                         attrs: {
                             'data-lang': lang
                         },
-                        // elemMods: { disabled: i === 0 ? 'yes' : '' },
+                        elemMods: { disabled: i === 0 ? 'yes' : '' },
                         url: '#' + lang,
                         content: lang
                     };
