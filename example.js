@@ -7,6 +7,7 @@ module.exports = {
     },
     cards: {
         ru: {
+            lang: 'ru',
             name: 'Иван Иванов',
             position: 'Разработчик интерфейсов',
             address: {
@@ -34,6 +35,7 @@ module.exports = {
             }
         },
         en: {
+            lang: 'en',
             name: 'Ivan Ivanov',
             position: 'UI Developer',
             address: {
