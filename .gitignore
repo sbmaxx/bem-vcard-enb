@@ -4,5 +4,6 @@ node_modules
 .enb/tmp
 pages/*/*.*
 !pages/*/*.bemjson.js
+!pages/*/*.bemdecl.js
 data.js
 npm-debug.log
