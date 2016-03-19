@@ -1,12 +1,8 @@
 node_modules
 .DS_Store
 .idea
-.project
-.svn
-.bem/tmp
+.enb/tmp
 pages/*/*.*
-!pages/generator/*
 !pages/*/*.bemjson.js
-!pages/*/*.bemdecl.js
-bower_components/*
 data.js
+npm-debug.log

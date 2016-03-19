@@ -1,5 +1,40 @@
-var root = '../../',
-    data = require(root + 'data.js'),
-    bemjson = require(root + 'bemjson.js');
+var fs = require('fs'),
+    path = require('path'),
+    data = require(path.resolve(__dirname, '../../data.js')),
+    lang = data.order[0],
+    title = data.cards[lang].name;
 
-module.exports = bemjson(data);
+module.exports = {
+    block: 'page',
+    title: title,
+    favicon: data.favicons[lang],
+    head: [
+        {
+            elem: 'meta',
+            attrs: {
+                name: 'viewport',
+                content: 'width=device-width, initial-scale=1'
+            }
+        },
+        {
+            elem: 'css',
+            content: fs.readFileSync(path.resolve(__dirname, 'index.min.css'))
+        }
+    ],
+    content: [
+        {
+            block: 'card',
+            order: data.order,
+            cards: data.cards,
+            favicons: data.favicons
+        },
+        {
+            tag: 'script',
+            content: fs.readFileSync(path.resolve(__dirname, 'index.min.js'))
+        },
+        data.metrikaId ? {
+            block: 'metrika',
+            metrikaId: data.metrikaId
+        } : ''
+    ]
+};

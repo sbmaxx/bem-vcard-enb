@@ -19,7 +19,7 @@ module.exports = {
             },
             company: {
                 name: 'Яндекс',
-                site: 'yandex.ru'
+                site: 'https://yandex.ru'
             },
             contact: {
                 work: '+7 (495) 739-70-00',
@@ -48,7 +48,7 @@ module.exports = {
             },
             company: {
                 name: 'Yandex',
-                site: 'yandex.com'
+                site: 'https://yandex.com'
             },
             contact: {
                 work: '+7 (495) 739-70-00',
