@@ -139,7 +139,7 @@ block('card').elem('name')(
     })
 );
 
-block('card').elem('position').attrs({
+block('card').elem('position').attrs()({
     itemprop: 'title'
 });
 
@@ -317,7 +317,7 @@ block('card').elem('twitter').content()(function() {
 
 block('card').elem('link')(
     tag()('a'),
-    attrs()(() => {
+    attrs()(function() {
         return {
             href: this.ctx.url
         };
