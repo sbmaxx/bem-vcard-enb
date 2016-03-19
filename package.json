@@ -13,7 +13,7 @@
     "start": "enb server",
     "make": "enb make",
     "prod": "YENV=production enb make",
-    "postinstall": "cp example.js data.js",
+    "postinstall": "cp example.js data.js && npm run prod",
     "test": "eslint ."
   },
   "dependencies": {
