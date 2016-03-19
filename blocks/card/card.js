@@ -5,7 +5,7 @@ var Card = (function() {
     var modSideClosed = 'card__side_state_closed';
     var modAnimation = 'card_animation';
     var modVisible = 'card_visible';
-    var modLinkDisabled = 'card__link_disabled';
+    var modLinkDisabled = 'card__link_disabled_yes';
 
     return {
 
