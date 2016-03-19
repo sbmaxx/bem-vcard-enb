@@ -115,7 +115,15 @@ height = 300px
         margin-left: 10px;
     }
 
-    &__link {
+    &__link_disabled_yes, &__phone-link:link {
+        color: #000;
+        text-decoration: none;
+        &:visited {
+            color: #000
+        }
+    }
+
+    &__link, .mobile &__phone-link:link {
         text-decoration: none;
         color: #4183c4;
         &:visited {
@@ -123,14 +131,6 @@ height = 300px
         }
         &:hover {
             text-decoration: underline;
-        }
-    }
-
-    &__link_disabled_yes {
-        color: #000;
-        text-decoration: none;
-        &:visited {
-            color: #000
         }
     }
 

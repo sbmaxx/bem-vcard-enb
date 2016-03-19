@@ -10,10 +10,15 @@ block('page').wrap()(function() {
                     elem: 'head',
                     content: [
                         { tag: 'meta', attrs: { charset: 'utf-8' } },
+                        { tag: 'meta', attrs: { name: 'format-detection', content: 'telephone=no' } },
                         { tag: 'title', content: this.ctx.title },
                         {
                             elem: 'js',
                             content: '(function(e,c){e[c]=e[c].replace(/(ua_js_)no/g,"$1yes");})(document.documentElement,"className");'
+                        },
+                        {
+                            elem: 'js',
+                            content: '(function(){/Android|iPhone/i.test(navigator.userAgent)&&(document.documentElement.className += \' mobile\')})()'
                         },
                         this.ctx.head,
                         this.ctx.styles,

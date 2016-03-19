@@ -1,7 +1,7 @@
 /*global block,tag,attrs,content,js*/
 var i18n = {
     ru: {
-        tel: 'тел.: ',
+            tel: 'тел.: ',
         telExt: ', доб. ',
         fax: 'факс: ',
         cell: 'моб.: '
@@ -77,9 +77,6 @@ block('card')(
 
 block('card').elem('content').content()(function() {
     var data = this.ctx.data;
-
-    data.contact.workRaw = data.contact.work.replace(/\(|\)|\s|\-/g, '');
-    data.contact.cellRaw = data.contact.cell.replace(/\(|\)|\s|\-/g, '');
 
     return [
         {
@@ -216,7 +213,11 @@ block('card').elem('contact').content()(function() {
             elemMods: { type: 'work' },
             content: [
                 i18n[this.ctx.lang].tel,
-                data.work,
+                {
+                    elem: 'phone-link',
+                    raw: data.work.replace(/\(|\)|\s|\-/g, ''),
+                    content: data.work
+                },
                 data.workExt
                     ? i18n[this.ctx.lang].telExt + data.workExt
                     : ''
@@ -230,7 +231,11 @@ block('card').elem('contact').content()(function() {
             elemMods: { type: 'cellular' },
             content: [
                 i18n[this.ctx.lang].cell,
-                data.cell
+                {
+                    elem: 'phone-link',
+                    raw: data.cell.replace(/\(|\)|\s|\-/g, ''),
+                    content: data.cell
+                }
             ]
         });
     }
@@ -259,6 +264,15 @@ block('card').elem('contact').content()(function() {
 
     return content;
 });
+
+block('card').elem('phone-link')(
+    tag()('a'),
+    attrs()(function() {
+        return {
+            href: 'tel:' + this.ctx.raw
+        };
+    })
+);
 
 block('card').elem('site').content()(function() {
     return {
