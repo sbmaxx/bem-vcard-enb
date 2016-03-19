@@ -25,10 +25,7 @@ module.exports = {
                 workExt: '0000',
                 cell: '+7 (555) 123-45-66',
                 email: 'ivanivanovich@yandex-team.ru',
-                site: {
-                    url: 'https://ivanivanovich.ru/',
-                    text: 'ivanivanovich.ru'
-                },
+                site: 'https://ivanivanovich.ru',
                 github: 'ivanivanovich',
                 twitter: 'ivanivanovich',
                 skype: 'ivanivanovich'
@@ -53,10 +50,7 @@ module.exports = {
                 workExt: '000',
                 cell: '+7 (555) 123-45-67',
                 email: 'ivanivanovich@yandex-team.ru',
-                site: {
-                    url: 'https://ivanivanovich.ru/#en',
-                    text: 'ivanivanovich.ru'
-                },
+                site: 'https://ivanivanovich.ru/#en',
                 skype: 'ivanivanovich',
                 github: 'ivanivanovich',
                 twitter: 'ivanivanovich'

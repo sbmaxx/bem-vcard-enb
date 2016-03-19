@@ -266,8 +266,8 @@ block('card').elem('site').content()(function() {
         attrs: {
             itemprop: 'url'
         },
-        url: this.ctx.data.url,
-        content: this.ctx.data.text
+        url: this.ctx.data,
+        content: this.ctx.data.replace(/httpss?:\/\//, '')
     };
 });
 
