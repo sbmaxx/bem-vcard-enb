@@ -153,9 +153,14 @@ block('card').elem('address')(
     }),
     content()(function() {
         var ctx = this.ctx;
+
+        if (typeof ctx.data === 'string') {
+            return ctx.data;
+        }
+
         var order = ctx.data.lang === 'ru'
-            ? ['country', 'city', 'zip']
-            : ['city', 'zip', 'country'];
+            ? ['country', 'city', 'zip', 'street-address']
+            : ['city', 'zip', 'country', 'street-address'];
 
         var content = [];
 
@@ -168,14 +173,6 @@ block('card').elem('address')(
                 content.push(', ');
             }
         });
-
-        content.push(
-            { tag: 'br' },
-            {
-                elem: 'street-address',
-                content: ctx.data['street-address']
-            }
-        );
 
         return content;
     })
