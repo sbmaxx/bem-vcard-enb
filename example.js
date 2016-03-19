@@ -7,9 +7,7 @@ module.exports = {
     },
     cards: {
         ru: {
-            lang: 'ru',
             name: 'Иван Иванов',
-            nickname: 'ivanivanovich',
             position: 'Разработчик интерфейсов',
             address: {
                 country: 'Россия',
@@ -27,18 +25,16 @@ module.exports = {
                 cell: '+7 (555) 123-45-66',
                 email: 'ivanivanovich@yandex-team.ru',
                 site: {
-                    url: '//ivanivanovich.ru/',
+                    url: 'https://ivanivanovich.ru/',
                     text: 'ivanivanovich.ru'
                 },
-                skype: true,
-                github: true,
-                twitter: 'ivanivanovich'
+                github: 'ivanivanovich',
+                twitter: 'ivanivanovich',
+                skype: 'ivanivanovich'
             }
         },
         en: {
-            lang: 'en',
             name: 'Ivan Ivanov',
-            nickname: 'ivanivanovich',
             position: 'UI Developer',
             address: {
                 country: 'Russia',
@@ -56,11 +52,11 @@ module.exports = {
                 cell: '+7 (555) 123-45-67',
                 email: 'ivanivanovich@yandex-team.ru',
                 site: {
-                    url: '//ivanivanovich.ru/#en',
+                    url: 'https://ivanivanovich.ru/#en',
                     text: 'ivanivanovich.ru'
                 },
-                skype: true,
-                github: true,
+                skype: 'ivanivanovich',
+                github: 'ivanivanovich',
                 twitter: 'ivanivanovich'
             }
         }

@@ -1,3 +1,4 @@
+/*global block,tag,attrs,mix,bem,match*/
 block('page').wrap()(function() {
     return [
         this.ctx.doctype || '<!DOCTYPE html>',
@@ -16,7 +17,7 @@ block('page').wrap()(function() {
                         },
                         this.ctx.head,
                         this.ctx.styles,
-                        this.ctx.favicon? { elem: 'favicon', url: this.ctx.favicon } : '',
+                        this.ctx.favicon ? { elem: 'favicon', url: this.ctx.favicon } : ''
                     ]
                 },
                 this.ctx
@@ -31,7 +32,7 @@ block('page')(
         return {
             block: 'font',
             mods: { face: 'textbook-new' }
-        }
+        };
     })
 );
 
@@ -67,14 +68,14 @@ block('page').elem('js')(
     attrs()(function() {
         return {
             src: this.ctx.url
-        }
+        };
     })
-)
+);
 
 block('page').elem('css')(
     tag()('style'),
     bem()(false),
-    match(function() { return this.ctx.url })(
+    match(function() { return this.ctx.url; })(
         tag()('link'),
         attrs()(function() {
             return {

@@ -1,3 +1,4 @@
+/*global block*/
 block('card').elem('logo').content()(function() {
     return [
         {
@@ -5,15 +6,13 @@ block('card').elem('logo').content()(function() {
             attrs: {
                 href: this.ctx.site
             },
-            content:
-                {
-                    tag: 'span',
-                    content: this.ctx.name,
-                    attrs: {
-                        itemprop: 'affiliation'
-                    }
+            content: {
+                tag: 'span',
+                content: this.ctx.name,
+                attrs: {
+                    itemprop: 'affiliation'
                 }
-
+            }
         }
     ];
 });

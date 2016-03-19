@@ -1,5 +1,5 @@
+/*global Card*/
 (function() {
-
     var card, screen, isLandscape;
 
     card = {
@@ -34,27 +34,24 @@
     }
 
     function computeAndSetScale() {
-
-        var width = getAvailWidth(),
-            height = getAvailHeight();
+        var width = getAvailWidth();
+        var height = getAvailHeight();
 
         if (width > card.width && card.height < height) {
             return;
         }
 
         if (width < height) {
-            setInitialScale(width/card.width);
+            setInitialScale(width / card.width);
         } else {
-            setInitialScale(height/card.height);
+            setInitialScale(height / card.height);
         }
-
     }
 
     function onOrientationChange() {
         isLandscape = getOrientation();
         computeAndSetScale();
     }
-
 }());
 
 document.addEventListener('DOMContentLoaded', function(event) {

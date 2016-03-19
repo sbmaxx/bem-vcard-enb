@@ -1,26 +1,23 @@
+/*global block,tag,attrs,content,js*/
 var i18n = {
     ru: {
         tel: 'тел.: ',
         telExt: ', доб. ',
         fax: 'факс: ',
-        cell: 'моб.: ',
-        site: '',
-        skype: 'skype: '
+        cell: 'моб.: '
     },
     en: {
         tel: 'tel. ',
         telExt: ' ext. ',
         fax: 'fax ',
-        cell: 'cell. ',
-        site: '',
-        skype: 'skype: '
+        cell: 'cell. '
     }
 };
 
 block('card')(
     js()(function() {
-        var titles = {},
-            ctx = this.ctx;
+        var titles = {};
+        var ctx = this.ctx;
 
         ctx.order.forEach(function(lang) {
             titles[lang] = ctx.cards[lang].name;
@@ -33,13 +30,13 @@ block('card')(
     }),
 
     content()(function() {
-        var content,
-            ctx = this.ctx;
+        var content;
+        var ctx = this.ctx;
 
-        content = ctx.order.map(function(lang, i) {
+        content = ctx.order.map((lang, i) => {
             return {
                 elem: 'side',
-                mix: [{ elem: 'layout' }],
+                mix: { elem: 'layout' },
                 attrs: {
                     'data-lang': lang,
                     'itemscope': true,
@@ -49,33 +46,27 @@ block('card')(
                     lang: lang,
                     state: i === 0 ? 'opened' : 'closed'
                 },
-                content: [
-                    {
-                        elem: 'rectangle',
-                        data: ctx.cards[lang]
-                    },
-                    {
-                        elem: 'triangle'
-                    }
-                ]
+                content: {
+                    elem: 'content',
+                    mix: { elem: 'rectangle' },
+                    data: ctx.cards[lang]
+                }
             };
         });
 
         if (ctx.order.length) {
             content.push({
                 elem: 'switch',
-                content: ctx.order.map(function(lang, i) {
-                     var mods = i === 0 ? { disabled: true } : null;
-
-                     return {
-                         elem: 'link',
-                         attrs: {
-                             'data-lang': lang
-                         },
-                         elemMods: mods,
-                         url: '#' + lang,
-                         content: lang
-                     };
+                content: ctx.order.map((lang, i) => {
+                    return {
+                        elem: 'link',
+                        attrs: {
+                            'data-lang': lang
+                        },
+                        // elemMods: { disabled: i === 0 ? 'yes' : '' },
+                        url: '#' + lang,
+                        content: lang
+                    };
                 })
             });
         }
@@ -84,8 +75,9 @@ block('card')(
     })
 );
 
-block('card').elem('rectangle').content()(function() {
+block('card').elem('content').content()(function() {
     var data = this.ctx.data;
+
     data.contact.workRaw = data.contact.work.replace(/\(|\)|\s|\-/g, '');
     data.contact.cellRaw = data.contact.cell.replace(/\(|\)|\s|\-/g, '');
 
@@ -142,17 +134,13 @@ block('card').elem('title').content()(function() {
 
 block('card').elem('name')(
     tag()('h1'),
-    attrs()(function() {
-        return {
-            itemprop: 'name'
-        };
+    attrs()({
+        itemprop: 'name'
     })
 );
 
-block('card').elem('position').attrs()(function() {
-    return {
-        itemprop: 'title'
-    };
+block('card').elem('position').attrs({
+    itemprop: 'title'
 });
 
 block('card').elem('address')(
@@ -195,43 +183,35 @@ block('card').elem('address')(
 
 block('card').elem('country')(
     tag()('span'),
-    attrs()(function() {
-        return {
-            itemprop: 'country-name'
-        };
+    attrs()({
+        itemprop: 'country-name'
     })
 );
 
 block('card').elem('city')(
     tag()('span'),
-    attrs()(function() {
-        return {
-            itemprop: 'locality'
-        };
+    attrs()({
+        itemprop: 'locality'
     })
 );
 
 block('card').elem('zip')(
     tag()('span'),
-    attrs()(function() {
-        return {
-            itemprop: 'postal-code'
-        };
+    attrs()({
+        itemprop: 'postal-code'
     })
 );
 
 block('card').elem('street-address')(
     tag()('span'),
-    attrs()(function() {
-        return {
-            itemprop: 'street-address'
-        };
+    attrs()({
+        itemprop: 'street-address'
     })
 );
 
 block('card').elem('contact').content()(function() {
-    var content = [],
-        data = this.ctx.data.contact;
+    var content = [];
+    var data = this.ctx.data.contact;
 
     if (data.work) {
         content.push({
@@ -244,7 +224,7 @@ block('card').elem('contact').content()(function() {
                     ? i18n[this.ctx.lang].telExt + data.workExt
                     : ''
             ]
-        })
+        });
     }
 
     if (data.cell) {
@@ -262,7 +242,7 @@ block('card').elem('contact').content()(function() {
         elem: 'gap'
     });
 
-    ['email', 'site'].filter(prop => data[prop]).forEach(function(prop) {
+    ['email', 'site'].filter((prop) => data[prop]).forEach(function(prop) {
         content.push({
             elem: prop,
             data: data[prop]
@@ -273,13 +253,11 @@ block('card').elem('contact').content()(function() {
         elem: 'gap'
     });
 
-    ['skype','github', 'twitter'].forEach(function(prop) {
-        if (data[prop]) {
-            content.push({
-                elem: prop,
-                data: data[prop] === true ? data.nickname : data[prop]
-            });
-        }
+    ['skype', 'github', 'twitter'].filter((prop) => data[prop]).forEach(function(prop) {
+        content.push({
+            elem: prop,
+            content: data[prop]
+        });
     });
 
     return content;
@@ -293,7 +271,7 @@ block('card').elem('site').content()(function() {
         },
         url: this.ctx.data.url,
         content: this.ctx.data.text
-    }
+    };
 });
 
 block('card').elem('email').content()(function() {
@@ -307,8 +285,8 @@ block('card').elem('email').content()(function() {
 block('card').elem('github').content()(function() {
     return {
         elem: 'link',
-        url: 'https://github.com/' + this.ctx.data,
-        content: 'github.com/' + this.ctx.data
+        url: 'https://github.com/' + this.ctx.content,
+        content: 'github.com/' + this.ctx.content
     };
 });
 
@@ -317,13 +295,13 @@ block('card').elem('skype').content()(function() {
         'skype: ',
         {
             elem: 'link',
-            url: 'skype:' + this.ctx.data + '?chat',
+            url: 'skype:' + this.ctx.content + '?chat',
             content: {
                 tag: 'span',
                 attrs: {
                     itemprop: 'nickname'
                 },
-                content: this.ctx.data
+                content: this.ctx.content
             }
         }
     ];
@@ -332,14 +310,14 @@ block('card').elem('skype').content()(function() {
 block('card').elem('twitter').content()(function() {
     return {
         elem: 'link',
-        url: 'https://twitter.com/' + this.ctx.data,
-        content: 'twitter.com/' + this.ctx.data
+        url: 'https://twitter.com/' + this.ctx.content,
+        content: 'twitter.com/' + this.ctx.content
     };
 });
 
 block('card').elem('link')(
     tag()('a'),
-    attrs()(function() {
+    attrs()(() => {
         return {
             href: this.ctx.url
         };

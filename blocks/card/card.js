@@ -1,5 +1,4 @@
 var Card = (function() {
-
     var toArray = Array.prototype.slice;
 
     var modSideOpened = 'card__side_state_opened';
@@ -11,7 +10,6 @@ var Card = (function() {
     return {
 
         init: function() {
-
             var fillLang;
 
             this.card = document.querySelector('.card');
@@ -42,7 +40,6 @@ var Card = (function() {
                 addClass(Card.card, modAnimation);
                 addClass(Card.card, modVisible);
             }, 0);
-
         },
 
         _onHashChange: function() {
@@ -71,7 +68,6 @@ var Card = (function() {
         },
 
         _changeUrl: function(lang) {
-
             this.links.forEach(function(link) {
                 if (link.lang === lang) {
                     addClass(link.elem, modLinkDisabled);
@@ -81,16 +77,13 @@ var Card = (function() {
             });
 
             return this;
-
         },
 
         _switchSide: function(lang) {
+            var from;
+            var to;
 
-            var to,
-                from,
-                cb
-
-            cb = function() {
+            var cb = function() {
                 removeClass(from, modSideOpened);
                 addClass(from, modSideClosed);
                 removeClass(to, modSideClosed);
@@ -108,22 +101,20 @@ var Card = (function() {
             removeClass(to, modSideClosed);
 
             if (hasClass(this.card, modAnimation)) {
-                setTimeout(cb,  100);
+                setTimeout(cb, 100);
             } else {
                 // здесь нельзя просто setTimeout(cb, 100), т.к. в nextTick появится модификатор анимации
                 cb();
             }
 
-
             return this;
-
         },
 
         _getLangFromHash: function() {
-            var lang = location.hash.match(/(\w{2})/);
+            var lang = document.location.hash.match(/(\w{2})/);
             return lang ? lang[1] : '';
         }
-    }
+    };
 
     function addClass(elem, className) {
         if (!hasClass(elem, className)) {
@@ -132,22 +123,19 @@ var Card = (function() {
     }
 
     function removeClass(elem, className) {
-
         if (!hasClass(elem, className)) {
             return;
         }
 
-        var classes = elem.className.split(/\s/),
-            idx = classes.indexOf(className);
+        var classes = elem.className.split(/\s/);
+        var idx = classes.indexOf(className);
 
         classes.splice(idx, 1);
 
         elem.className = classes.join(' ');
-
     }
 
     function hasClass(elem, className) {
         return elem.className.split(/\s/).indexOf(className) !== -1;
     }
-
 }());

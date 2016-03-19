@@ -1,3 +1,4 @@
+/*global block*/
 block('metrika').replace()(function() {
     return [
         {
@@ -15,5 +16,5 @@ block('metrika').replace()(function() {
                 }
             }
         }
-    ]
+    ];
 });

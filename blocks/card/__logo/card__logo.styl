@@ -1,5 +1,5 @@
 .card {
-    &__logo a {
+    &__logo {
         position: absolute;
         left: 27px;
         top: 128px;
@@ -7,17 +7,20 @@
         width: 110px;
         height: 44px;
 
-        border: 0;
         background-image: url('card__logo_lang_ru.svg');
         background-size: 110px 44px;
+
+        a {
+            border: 0;
+        }
+
+        span {
+            position: absolute;
+            left: -9999px;
+        }
     }
 
-    &__logo span {
-        position: absolute;
-        left: -9999px;
-    }
-
-    &__side_lang_en &__logo a {
+    &__side_lang_en &__logo {
         background-image: url('card__logo_lang_en.svg');
         top: 124px;
     }
