@@ -12,7 +12,8 @@
   "scripts": {
     "start": "enb server",
     "make": "enb make",
-    "postinstall": "cp example.js data.js"
+    "postinstall": "cp example.js data.js",
+    "test": "eslint ."
   },
   "dependencies": {
     "bem": "^0.10.2",
