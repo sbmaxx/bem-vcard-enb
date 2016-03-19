@@ -19,20 +19,21 @@ block('page').wrap()(function() {
                         this.ctx.favicon? { elem: 'favicon', url: this.ctx.favicon } : '',
                     ]
                 },
-                {
-                    tag: 'body',
-                    mix: {
-                        block: 'font',
-                        mods: { face: 'textbook-new' }
-                    },
-                    content: [
-                        this.ctx
-                    ]
-                }
+                this.ctx
             ]
         }
-    ]
+    ];
 });
+
+block('page')(
+    tag()('body'),
+    mix()(function() {
+        return {
+            block: 'font',
+            mods: { face: 'textbook-new' }
+        }
+    })
+);
 
 block('page').elem('head')(
     tag()('head'),

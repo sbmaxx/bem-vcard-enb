@@ -18,7 +18,7 @@ module.exports = {
         },
         {
             elem: 'css',
-            content: fs.readFileSync(path.resolve(__dirname, 'index.min.css'))
+            content: fs.readFileSync(path.resolve(__dirname, 'index.min.css'), { encoding: 'utf8' })
         }
     ],
     content: [
@@ -30,7 +30,7 @@ module.exports = {
         },
         {
             tag: 'script',
-            content: fs.readFileSync(path.resolve(__dirname, 'index.min.js'))
+            content: fs.readFileSync(path.resolve(__dirname, 'index.min.js'), { encoding: 'utf8' })
         },
         data.metrikaId ? {
             block: 'metrika',

@@ -8,7 +8,7 @@ block('card').elem('logo').content()(function() {
             content:
                 {
                     tag: 'span',
-                    content: this.json.name,
+                    content: this.ctx.name,
                     attrs: {
                         itemprop: 'affiliation'
                     }

@@ -151,26 +151,3 @@ var Card = (function() {
     }
 
 }());
-
-var consoleCSS = {
-    'font-size': '18px',
-    'font-family': '15px',
-    'line-height': '50px',
-    'margin': '15px',
-    'padding': '10px',
-    'display': 'inline-block'
-};
-
-function stringifyCSS(cssObject) {
-    var result = '';
-
-    for (var key in cssObject) {
-        result += key + ':' + cssObject[key] + ';'
-    }
-
-    return result;
-}
-
-if (typeof console !== 'undefined') {
-    console.log('%c https://github.com/sbmaxx/bem-vcard-enb', stringifyCSS(consoleCSS));
-}
