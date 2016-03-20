@@ -10,23 +10,11 @@ var Card = (function() {
     return {
 
         init: function() {
-            var fillLang;
-
             this.card = document.querySelector('.card');
             this.params = JSON.parse(this.card.dataset.bem).card;
 
-            fillLang = function(elem) {
-                return {
-                    lang: elem.dataset.lang,
-                    elem: elem
-                };
-            };
-
-            this.sides = toArray.call(this.card.querySelectorAll('.card__side'));
-            this.links = toArray.call(this.card.querySelectorAll('.card__switch .card__link'));
-
-            this.sides = this.sides.map(fillLang);
-            this.links = this.links.map(fillLang);
+            this.sides = toArray.call(this.card.querySelectorAll('.card__side')).map(fillLang);
+            this.links = toArray.call(this.card.querySelectorAll('.card__switch .card__link')).map(fillLang);
 
             // trying to fix google's markup tool
             removeClass(this.sides[1].elem, modSideOpened);
@@ -40,6 +28,13 @@ var Card = (function() {
                 addClass(Card.card, modAnimation);
                 addClass(Card.card, modVisible);
             }, 0);
+
+            function fillLang(elem) {
+                return {
+                    lang: elem.dataset.lang,
+                    elem: elem
+                };
+            }
         },
 
         _onHashChange: function() {
@@ -83,28 +78,28 @@ var Card = (function() {
             var from;
             var to;
 
-            var cb = function() {
-                removeClass(from, modSideOpened);
-                addClass(from, modSideClosed);
-                removeClass(to, modSideClosed);
-                addClass(to, modSideOpened);
-            };
-
-            this.sides.forEach(function(side) {
-                if (side.lang === lang) {
-                    to = side.elem;
-                } else {
-                    from = side.elem;
-                }
-            });
+            if (this.sides[0].lang === lang) {
+                to = this.sides[0].elem;
+                from = this.sides[1].elem;
+            } else {
+                to = this.sides[1].elem;
+                from = this.sides[0].elem;
+            }
 
             removeClass(to, modSideClosed);
 
             if (hasClass(this.card, modAnimation)) {
-                setTimeout(cb, 100);
+                setTimeout(doSwitch, 100);
             } else {
                 // здесь нельзя просто setTimeout(cb, 100), т.к. в nextTick появится модификатор анимации
-                cb();
+                doSwitch();
+            }
+
+            function doSwitch() {
+                removeClass(from, modSideOpened);
+                addClass(from, modSideClosed);
+                removeClass(to, modSideClosed);
+                addClass(to, modSideOpened);
             }
 
             return this;

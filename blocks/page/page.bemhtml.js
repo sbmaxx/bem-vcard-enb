@@ -21,7 +21,6 @@ block('page').wrap()(function() {
                             content: '(function(){/Android|iPhone/i.test(navigator.userAgent)&&(document.documentElement.className += \' mobile\')})()'
                         },
                         this.ctx.head,
-                        this.ctx.styles,
                         this.ctx.favicon ? { elem: 'favicon', url: this.ctx.favicon } : ''
                     ]
                 },
