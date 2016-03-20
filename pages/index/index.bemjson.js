@@ -2,6 +2,12 @@ var fs = require('fs'),
     path = require('path'),
     data = require(path.resolve(__dirname, '../../data.js'));
 
+var inline = {
+    headCss: fs.readFileSync(path.resolve(__dirname, 'index.min.css'), { encoding: 'utf8' }),
+    footJs: fs.readFileSync(path.resolve(__dirname, 'index.min.js'), { encoding: 'utf8' }),
+    footCss: fs.readFileSync(path.resolve(__dirname, 'index.inline.min.css'), { encoding: 'utf8' })
+};
+
 module.exports = getBEMJSON(data);
 module.exports.getBEMJSON = getBEMJSON;
 
@@ -23,7 +29,7 @@ function getBEMJSON(data) {
             },
             {
                 elem: 'css',
-                content: fs.readFileSync(path.resolve(__dirname, 'index.min.css'), { encoding: 'utf8' })
+                content: inline.headCss
             }
         ],
         content: [
@@ -35,11 +41,11 @@ function getBEMJSON(data) {
             },
             {
                 elem: 'css',
-                content: fs.readFileSync(path.resolve(__dirname, 'index.inline.min.css'), { encoding: 'utf8' })
+                content: inline.footCss
             },
             {
                 tag: 'script',
-                content: fs.readFileSync(path.resolve(__dirname, 'index.min.js'), { encoding: 'utf8' })
+                content: inline.footJs
             },
             data.metrikaId ? {
                 block: 'metrika',
