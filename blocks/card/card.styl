@@ -115,22 +115,23 @@ height = 300px
         margin-left: 10px;
     }
 
-    &__link, .mobile &__phone-link:link {
+    &__link, .mobile &__phone-link {
         text-decoration: none;
         color: #4183c4;
-        &:visited {
-            color: #4183c4;
-        }
         &:hover {
-            text-decoration: underline;
+            color: #d00;
         }
     }
 
-    &__link_disabled_yes, &__phone-link:link {
+    &__link_disabled_yes, &__phone-link {
         color: #000;
         text-decoration: none;
+        cursor: default;
         &:visited {
             color: #000
+        }
+        &:hover {
+            text-decoration: none;
         }
     }
 }

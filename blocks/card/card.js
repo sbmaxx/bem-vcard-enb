@@ -29,6 +29,15 @@ var Card = (function() {
                 addClass(Card.card, modVisible);
             }, 0);
 
+            // drop phone links on desktop
+            if (!hasClass(document.documentElement, 'mobile')) {
+                setTimeout(function () {
+                    toArray.call(document.querySelectorAll('.card__phone-link')).forEach(function(elem) {
+                        elem.removeAttribute('href');
+                    });
+                }, 0);
+            }
+
             function fillLang(elem) {
                 return {
                     lang: elem.dataset.lang,
