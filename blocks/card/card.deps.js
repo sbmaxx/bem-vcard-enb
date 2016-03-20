@@ -1,7 +1,8 @@
 ({
     shouldDeps: [
         {
-            elems: ['logo']
+            // elems: ['logo']
+            // logo in inline.bemdecl.js
         }
     ]
 });

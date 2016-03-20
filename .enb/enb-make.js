@@ -20,7 +20,7 @@ var techs = {
 module.exports = function(config) {
     var isProd = process.env.YENV === 'production';
 
-    config.nodes('pages/*', function(nodeConfig) {
+    config.nodes('pages/index', function(nodeConfig) {
         nodeConfig.addTechs([
             // essential
             [enbBemTechs.levels, { levels: [ 'blocks' ] }],
@@ -28,6 +28,12 @@ module.exports = function(config) {
             [techs.fileProvider, { target: '?.bemdecl.js' }],
             [enbBemTechs.deps],
             [enbBemTechs.files],
+
+            // для "больших" ресурсов — картинки/шрифты
+            // большая часть визуального оформления приезжает в head, всё "ненужное" — в подвале
+            [techs.fileProvider, { target: '?.inline.bemdecl.js' }],
+            [enbBemTechs.deps, { target: '?.inline.deps.js', bemdeclFile: '?.inline.bemdecl.js' }],
+            [enbBemTechs.files, { filesTarget: '?.inline.files', dirsTarget: '?.inline.dirs', depsFile: '?.inline.deps.js' }],
 
             // css
             [techs.stylus, {
@@ -37,6 +43,17 @@ module.exports = function(config) {
                     browsers: ['ie >= 10', 'last 2 versions', 'opera 12.1', '> 2%']
                 }
             }],
+
+            [techs.stylus, {
+                target: '?.inline.css',
+                filesTarget: '?.inline.files',
+                sourcemap: false,
+                autoprefixer: {
+                    browsers: ['ie >= 10', 'last 2 versions', 'opera 12.1', '> 2%']
+                }
+            }],
+
+
             // bemhtml
             [techs.bemhtml, { sourceSuffixes: ['bemhtml.js'] }],
 
@@ -48,9 +65,10 @@ module.exports = function(config) {
 
             // borschik
             [techs.borschik, { source: '?.js', target: '?.min.js', minify: isProd }],
-            [techs.borschik, { source: '?.css', target: '?.min.css', tech: 'cleancss', minify: isProd }]
+            [techs.borschik, { source: '?.css', target: '?.min.css', tech: 'cleancss', minify: isProd }],
+            [techs.borschik, { source: '?.inline.css', target: '?.inline.min.css', tech: 'cleancss', minify: isProd }]
         ]);
 
-        nodeConfig.addTargets(['?.html', '?.min.js', '?.min.css']);
+        nodeConfig.addTargets(['?.html', '?.min.js', '?.min.css', '?.inline.min.css']);
     });
 };

@@ -34,6 +34,10 @@ function getBEMJSON(data) {
                 favicons: data.favicons
             },
             {
+                elem: 'css',
+                content: fs.readFileSync(path.resolve(__dirname, 'index.inline.min.css'), { encoding: 'utf8' })
+            },
+            {
                 tag: 'script',
                 content: fs.readFileSync(path.resolve(__dirname, 'index.min.js'), { encoding: 'utf8' })
             },
