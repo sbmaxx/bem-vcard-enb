@@ -141,23 +141,17 @@ block('card')(
     }),
 
     elem('address')(
-        attrs()(function() {
-            return {
-                itemprop: 'address',
-                itemscope: true,
-                itemtype: 'http://data-vocabulary.org/Address'
-            };
+        attrs()({
+            itemprop: 'address',
+            itemscope: true,
+            itemtype: 'http://data-vocabulary.org/Address'
         }),
 
         match(function() { return typeof this.ctx.data !== 'string'; })(
             match(function() { return this.ctx.data.lang === 'ru'; })
-                .content()(function() {
-                    return [ 'country', 'city', 'zip', 'street-address' ];
-                }),
+                .content()([ 'country', 'city', 'zip', 'street-address' ]),
 
-            content()(function() {
-                return ['city', 'zip', 'country', 'street-address'];
-            }),
+            content()(['city', 'zip', 'country', 'street-address']),
 
             content()(function() {
                 var ctx = this.ctx;

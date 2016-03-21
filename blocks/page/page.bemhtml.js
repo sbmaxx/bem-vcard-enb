@@ -33,11 +33,9 @@ block('page')(
 
     tag()('body'),
 
-    mix()(function() {
-        return {
-            block: 'font',
-            mods: { face: 'textbook-new' }
-        };
+    mix()({
+        block: 'font',
+        mods: { face: 'textbook-new' }
     }),
 
     elem('head')(
