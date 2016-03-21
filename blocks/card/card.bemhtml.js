@@ -1,7 +1,7 @@
 /*global block,tag,attrs,content,js*/
 var i18n = {
     ru: {
-            tel: 'тел.: ',
+        tel: 'тел.: ',
         telExt: ', доб. ',
         fax: 'факс: ',
         cell: 'моб.: '
