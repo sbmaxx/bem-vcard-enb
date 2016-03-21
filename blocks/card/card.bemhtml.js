@@ -147,31 +147,30 @@ block('card')(
                 itemtype: 'http://data-vocabulary.org/Address'
             };
         }),
-        content()(function() {
-            var ctx = this.ctx;
 
-            if (typeof ctx.data === 'string') {
-                return ctx.data;
-            }
+        match(function() { return typeof this.ctx.data !== 'string'; })(
+            match(function() { return this.ctx.data.lang === 'ru'; })
+                .content()(function() {
+                    return [ 'country', 'city', 'zip', 'street-address' ];
+                }),
 
-            var order = ctx.data.lang === 'ru'
-                ? ['country', 'city', 'zip', 'street-address']
-                : ['city', 'zip', 'country', 'street-address'];
+            content()(function() {
+                return ['city', 'zip', 'country', 'street-address'];
+            }),
 
-            var content = [];
-
-            order.forEach(function(el, i) {
-                content.push({
-                    elem: el,
-                    content: ctx.data[el]
-                });
-                if (i !== order.length - 1) {
-                    content.push(', ');
-                }
-            });
-
-            return content;
-        })
+            content()(function() {
+                var ctx = this.ctx;
+                return applyNext().map(function(el, i) {
+                    return [
+                        i !== 0 ? ', ' : '',
+                        {
+                            elem: el,
+                            content: ctx.data[el]
+                        }
+                    ];
+                })
+            })
+        )
     ),
 
     elem('country')(
