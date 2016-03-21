@@ -30,10 +30,9 @@ block('card')(
     }),
 
     content()(function() {
-        var content;
         var ctx = this.ctx;
 
-        content = ctx.order.map((lang, i) => {
+        return ctx.order.map((lang, i) => {
             return {
                 elem: 'side',
                 mix: { elem: 'layout' },
@@ -53,11 +52,15 @@ block('card')(
                 }
             };
         });
+    }),
 
-        if (ctx.order.length) {
-            content.push({
+    // Language switch needed if there are more than one language
+    match(function() { return this.ctx.order.length > 1; }).content()(function() {
+        return [
+            applyNext(),
+            {
                 elem: 'switch',
-                content: ctx.order.map((lang, i) => {
+                content: this.ctx.order.map((lang, i) => {
                     return {
                         elem: 'link',
                         attrs: {
@@ -68,10 +71,8 @@ block('card')(
                         content: lang
                     };
                 })
-            });
-        }
-
-        return content;
+            }
+        ];
     }),
 
     elem('content').content()(function() {
