@@ -39,8 +39,8 @@ block('card')(
                 mix: { elem: 'layout' },
                 attrs: {
                     'data-lang': lang,
-                    'itemscope': true,
-                    'itemtype': 'http://data-vocabulary.org/Person'
+                    itemscope: true,
+                    itemtype: 'http://data-vocabulary.org/Person'
                 },
                 elemMods: {
                     lang: lang,
