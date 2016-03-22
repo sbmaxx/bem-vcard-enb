@@ -10,7 +10,7 @@ block('metrika').replace()(function() {
             content: {
                 tag: 'img',
                 attrs: {
-                    src: '//mc.yandex.ru/watch/' + this.ctx.metrikaId,
+                    src: 'https://mc.yandex.ru/watch/' + this.ctx.metrikaId,
                     style: 'position:absolute; left:-9999px;',
                     alt: ''
                 }
