@@ -13,7 +13,11 @@ module.exports.getBEMJSON = getBEMJSON;
 
 function getBEMJSON(data) {
     var lang = data.order[0],
-        title = data.cards[lang].name;
+        title = data.cards[lang].name,
+        description = [
+            data.cards[lang].position,
+            data.cards[lang].company.name
+        ].join(', ');
 
     return {
         block: 'page',
@@ -25,6 +29,34 @@ function getBEMJSON(data) {
                 attrs: {
                     name: 'viewport',
                     content: 'width=device-width, initial-scale=1'
+                }
+            },
+            {
+                elem: 'meta',
+                attrs: {
+                    name: 'description',
+                    content: description
+                }
+            },
+            {
+                elem: 'meta',
+                attrs: {
+                    property: 'og:title',
+                    content: title
+                }
+            },
+            {
+                elem: 'meta',
+                attrs: {
+                    property: 'og:description',
+                    content: description
+                }
+            },
+            {
+                elem: 'meta',
+                attrs: {
+                    property: 'og:type',
+                    content: 'profile'
                 }
             },
             {
