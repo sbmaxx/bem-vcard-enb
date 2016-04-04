@@ -26,5 +26,5 @@ npm start
 
 ##Production
 ```bash
-npm rum prod
+npm run prod
 ```
