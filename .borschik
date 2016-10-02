@@ -5,6 +5,6 @@
     },
     "freeze_paths": {
         "blocks/**/*.svg": ":encodeURIComponent:",
-        "blocks/**/*.woff": ":base64:"
+        "blocks/**/*.woff2": ":base64:"
     }
 }

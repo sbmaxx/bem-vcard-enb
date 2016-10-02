@@ -33,11 +33,6 @@ block('page')(
 
     tag()('body'),
 
-    mix()({
-        block: 'font',
-        mods: { face: 'textbook-new' }
-    }),
-
     elem('head')(
         tag()('head'),
         bem()(false)

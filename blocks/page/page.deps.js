@@ -5,6 +5,10 @@
         },
         {
             block: 'metrika'
+        },
+        {
+            block: 'font',
+            mods: { face: 'yandex-sans' }
         }
     ]
 });
