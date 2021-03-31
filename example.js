@@ -2,8 +2,8 @@ module.exports = {
     metrikaId: 0,
     order: ['ru', 'en'],
     favicons: {
-        ru: '//yastatic.net/morda-logo/i/favicon_islands.ico',
-        en: '//yastatic.net/morda-logo/i/favicon_comtr.ico'
+        ru: 'https://yastatic.net/s3/home-static/_/f0/f0597b6727cc67dceebc4e3a87caf571.png',
+        en: 'https://yastatic.net/s3/home-static/_/7c/7ccfee6f1e81b14c5bef535d1ad7b7e0.png'
     },
     cards: {
         ru: {
