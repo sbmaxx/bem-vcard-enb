@@ -60,6 +60,13 @@ function getBEMJSON(data) {
                 }
             },
             {
+                elem: 'meta',
+                attrs: {
+                    property: 'og:image',
+                    content: 'https://yastatic.net/s3/home-static/_/37/37a02b5dc7a51abac55d8a5b6c865f0e.png'
+                }
+            },
+            {
                 elem: 'css',
                 content: inline.headCss
             }
